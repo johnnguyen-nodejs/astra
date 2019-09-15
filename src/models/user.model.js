@@ -52,4 +52,10 @@ let userSchema = new Schema({
     updatedAt: {type: Number, default: Date.now}
 });
 
+userSchema.statics = {
+    createNew(item){
+        return this.create(item);
+    }
+};
+
 module.exports = mongoose.model("user", userSchema);
