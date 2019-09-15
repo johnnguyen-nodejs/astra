@@ -4,10 +4,6 @@ let Schema = mongoose.Schema;
 
 let userSchema = new Schema({
     username: String,
-    gender: {
-        type: String,
-        default: "male"
-    },
     phone: {
         type: Number,
         default: null
