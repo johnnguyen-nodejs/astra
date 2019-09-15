@@ -10,7 +10,7 @@ let connectDB = ()=>{
     //mongodb://localhost:27017/astra
     let URI = `${process.env.DB_CONNECTTION}://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`;
 
-    return mongoose.connect(URI, { useNewUrlParser: true });
+    return mongoose.connect(URI, { useUnifiedTopology: true,useNewUrlParser: true });
 };
-
+console.log(process.env.DB_CONNECTTION);
 module.exports = connectDB;
