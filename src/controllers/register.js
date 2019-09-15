@@ -8,7 +8,8 @@ let register = (req, res)=>{
         errors.forEach(item =>{
             errArr.push(item.msg);
         });
-        return;  
+        req.flash("errors", errArr)
+        return res.redirect("/auth");  
     };
 };
 

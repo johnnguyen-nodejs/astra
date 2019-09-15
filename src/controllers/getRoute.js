@@ -5,11 +5,17 @@ let getHome = (req, res)=>{
     };
 
 let getDashboard = (req, res)=>{
-        res.render("dashboard", {title: "dashboard"});
+        res.render("dashboard", {
+            title: "dashboard"          
+        });
     };
 
 let getAuth = (req, res)=>{
-        res.render("auth/auth", {title: "Authenticate"});
+        res.render("auth/auth", {
+            title: "Authenticate",
+            errors: req.flash("errors"),
+            success: req.flash("success")
+        });
     };
 
 module.exports = {
