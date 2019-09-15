@@ -1,4 +1,4 @@
-require('custom-env').env(true);
+require('dotenv').config();
 import express from "express";
 import connectDB from "./config/connectDB";
 import viewConfig from "./config/viewEngine";

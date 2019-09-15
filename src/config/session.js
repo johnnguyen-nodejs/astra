@@ -1,7 +1,9 @@
+require("dotenv").config();
 import session from "express-session";
 import connectMongo from "connect-mongo";
 
 let MongoStore = connectMongo(session);
+
 
 /**
  * save session in mongodb
