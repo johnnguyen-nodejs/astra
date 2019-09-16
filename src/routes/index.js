@@ -14,10 +14,12 @@ import { authValid } from "../validation/index";
 import passport from "passport";
 import initPassportLocal from "./../controllers/passport/local";
 import initPassportFacebook from "./../controllers/passport/facebook";
+import initPassportGoogle from "./../controllers/passport/google";
 
 // Init all passport
 initPassportLocal();
 initPassportFacebook();
+initPassportGoogle();
 
 let router = express.Router();
 /**
@@ -38,6 +40,11 @@ let initRouter = (app)=>{
     }));
     router.get("/auth/facebook", passport.authenticate("facebook", {scope: ["email"]}));
     router.get("/auth/facebook/callback", passport.authenticate("facebook", {
+        successRedirect: "/",
+        failureRedirect: "/auth"
+    }));
+    router.get("/auth/google", passport.authenticate("google", {scope: ["email"]}));
+    router.get("/auth/google/callback", passport.authenticate("google", {
         successRedirect: "/",
         failureRedirect: "/auth"
     }));
