@@ -7,14 +7,19 @@ export const tranValidation ={
 export const tranErrors = {
     ACCOUNT_IN_USE: "Email đã tồn tại",
     ACCOUNT_NOT_ACTIVE: "Tài khoản đã tồn tại nhưng chưa xác thực, vui lòng kiểm tra email để hoàn thành việc đăng ký",
-    TOKEN_NULL: "Token hết hiệu lực"
+    TOKEN_NULL: "Token hết hiệu lực",
+    LOGIN_FAILED: "Sai tài khoản hoặc mật khẩu",
+    SERVER_ERR: "Server bảo trì, liên hệ quản trị viên để được hỗ trợ"
 };
 
 export const tranSuccess = {
     register_success: (userEmail) => { 
         return `Tài khoản <strong>${userEmail}</strong> đăng ký thành công, vui lòng kiểm tra email để xác thực tài khoản`;
     },
-    ACCOUNT_ACTIVE: "Kích hoạt tài khoản thành công"
+    ACCOUNT_ACTIVE: "Kích hoạt tài khoản thành công",
+    LOGIN_SUCCESS: (username) => {
+        return `Login success`;
+    }
 }; 
 
 export const tranMail = {
