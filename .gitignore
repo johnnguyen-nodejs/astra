@@ -63,3 +63,5 @@ typings/
 #bower_components
 src/public/bower_components
 
+# openssl
+src/openssl

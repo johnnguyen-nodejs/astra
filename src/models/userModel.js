@@ -70,7 +70,10 @@ UserSchema.statics = {
             {"local.verifyToken": token},
             {"local.isActive": true, "local.verifyToken": null}
         ).exec();
-    }
+    },
+    findByFacebookUid(uid){
+        return this.findOne({"facebook.uid": uid}).exec();
+    }   
 };
 
 UserSchema.methods = {
