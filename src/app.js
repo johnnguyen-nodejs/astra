@@ -6,6 +6,7 @@ import initRouter from "./routes/index";
 import bodyParser from "body-parser";
 import connectFlash from "connect-flash";
 import configSession from "./config/session";
+import passport from "passport";
 
 let app = express();
 //config database
@@ -18,6 +19,9 @@ viewConfig(app);
 app.use(bodyParser.urlencoded({ extended: true }));
 //Enable err messages
 app.use(connectFlash());
+//config passport
+app.use(passport.initialize());
+app.use(passport.session());
 //config routes
 initRouter(app);
 
