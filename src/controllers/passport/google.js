@@ -1,28 +1,27 @@
 require('dotenv').config();
 import passport from "passport";
-import passportFacebook from "passport-facebook";
+import passportGoogle from "passport-google-oauth";
 import UserModel from "./../../models/userModel";
 import {tranErrors} from "./../../../lang/vi";
 
-let FacebookStrategy = passportFacebook.Strategy;
+let GoogleStrategy = passportGoogle.OAuth2Strategy;
 
-let fbId = process.env.FB_ID;
-let fbSecret = process.env.FB_SECRET;
-let fbCallbackbUrl = process.env.FB_CB_URL;
+let ggId = process.env.GG_ID;
+let ggSecret = process.env.GG_SECRET;
+let ggCallbackbUrl = process.env.GG_CB_URL;
 /**
  * Valid user account type: Facebook 
  */
 
-let initPassportFacebook = () =>{
-    passport.use(new FacebookStrategy({
-        clientID: fbId,
-        clientSecret: fbSecret,
-        callbackURL: fbCallbackbUrl,
-        passReqToCallback: true,
-        profileFields: ["email", "displayName"]
+let initPassportGoogle = () =>{
+    passport.use(new GoogleStrategy({
+        clientID: ggId,
+        clientSecret: ggSecret,
+        callbackURL: ggCallbackbUrl,
+        passReqToCallback: true
     }, async (req, accessToken, refreshToken, profile, done) => {
         try {
-            let user = await UserModel.findByFacebookUid(profile.id);
+            let user = await UserModel.findByGoogleUid(profile.id);
             if(user){
                 return done(null, user);
             }
@@ -31,7 +30,7 @@ let initPassportFacebook = () =>{
                 local: {
                     isActive: true
                 },
-                facebook: {
+                google: {
                     uid: profile.id,
                     token: accessToken,
                     email: profile.emails[0].value
@@ -63,4 +62,4 @@ let initPassportFacebook = () =>{
     });
 };
 
-module.exports = initPassportFacebook;
+module.exports = initPassportGoogle;
