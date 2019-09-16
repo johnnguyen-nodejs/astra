@@ -1,4 +1,4 @@
-import register from "./register";
+import {register, verifyAccount} from "./register";
 
 let getHome = (req, res)=>{
         res.render("index", {title: "homepage"});
@@ -22,5 +22,6 @@ module.exports = {
     getHome: getHome,
     getDashboard: getDashboard,
     getAuth: getAuth,
-    postRegister: register
+    postRegister: register,
+    verifyAccount: verifyAccount
 };
