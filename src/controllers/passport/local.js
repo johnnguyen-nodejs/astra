@@ -27,7 +27,7 @@ let initPassportLocal = () =>{
             if(!checkPassword){
                 return done(null, false, req.flash("errors", tranErrors.LOGIN_FAILED));
             }
-            done(null, user, req.flash("success", tranSuccess.LOGIN_SUCCESS(user.username)));
+            done(null, user);
         } catch (error) {
             console.log(error);
             return done(null, false, req.flash("errors", tranErrors.SERVER_ERR));

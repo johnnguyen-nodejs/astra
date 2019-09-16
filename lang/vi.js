@@ -17,9 +17,10 @@ export const tranSuccess = {
         return `Tài khoản <strong>${userEmail}</strong> đăng ký thành công, vui lòng kiểm tra email để xác thực tài khoản`;
     },
     ACCOUNT_ACTIVE: "Kích hoạt tài khoản thành công",
-    LOGIN_SUCCESS: (username) => {
-        return `Login success`;
-    }
+    LOGIN_SUCCESS: () => {
+        return "Đăng nhập thành công";
+    },
+    LOGOUT_SUCCESS: "Đăng xuất thành công"
 }; 
 
 export const tranMail = {

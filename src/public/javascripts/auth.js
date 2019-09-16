@@ -30,6 +30,9 @@ function showRegisterForm() {
       $('#loginModal').modal('show');
       showLoginForm();
     }, 230);
+    setTimeout(function() {
+      $('#closeAlert').css('display', 'none');
+    }, 4000);  
   }
   
   function openRegisterModal() {
@@ -37,4 +40,7 @@ function showRegisterForm() {
       $('#loginModal').modal('show');
       showRegisterForm();
     }, 230);
+    setTimeout(function() {
+      $('#closeAlert').css('display', 'none');
+    }, 4000);
   }
