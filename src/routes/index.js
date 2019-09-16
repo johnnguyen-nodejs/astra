@@ -1,10 +1,14 @@
 import express from "express";
 import {
     getHome, 
+    getNotFound,
     getDashboard, 
     getAuth,
     postRegister,
-    verifyAccount
+    verifyAccount,
+    getLogout,
+    checkLogedIn,
+    checkLogedOut
 } from "../controllers/getRoute";
 import { authValid } from "../validation/index";
 import passport from "passport";
@@ -19,16 +23,18 @@ let router = express.Router();
  */
 let initRouter = (app)=>{
     router.get('/', getHome );
-    router.get('/dashboard', getDashboard );
-    router.get('/auth', getAuth );
-    router.get('/verify/:token', verifyAccount );
-    router.post('/register', authValid.register, postRegister);
-    router.post('/login', passport.authenticate("local", {
+    router.get('/404', getNotFound );
+    router.get('/dashboard', checkLogedIn, getDashboard );
+    router.get('/auth', checkLogedOut, getAuth );
+    router.get('/verify/:token', checkLogedOut, verifyAccount );
+    router.post('/register', checkLogedOut, authValid.register, postRegister);
+    router.post('/login', checkLogedOut, passport.authenticate("local", {
         successRedirect: "/",
         failureRedirect: "/auth",
         successFlash: true,
         failureFlash: true
     }));
+    router.get('/logout', checkLogedIn, getLogout);
     app.use("/", router);
 };
 module.exports = initRouter;
