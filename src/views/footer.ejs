@@ -30,16 +30,14 @@
                                     </div>
                                     <!-- edit form column -->
                                     <div class="col-md-9 personal-info">
-                                        <div class="alert alert-danger alert-dismissable">
+                                        <div class="alert alert-danger alert-dismissable user-modal-alert-error">
                                             <a class="panel-close close" data-dismiss="alert">×</a>
-                                            Update user error example.<br>
-                                            <!-- <script>openProfileModal();</script> -->
+                                            <span>Update user error example.</span>
                                         </div>
     
-                                        <div class="alert alert-success alert-dismissable">
+                                        <div class="alert alert-success alert-dismissable user-modal-alert-success">
                                             <a class="panel-close close" data-dismiss="alert">×</a>
-                                            Update user success example.<br>
-                                            <!-- <script>openProfileModal();</script> -->
+                                            <span>Update user success example.</span>
                                         </div>
                                         <% if(user.local.email){ %>
                                         <h3>Local account.</h3>
@@ -94,7 +92,7 @@
                                             <div class="col-md-8">
                                                 <input type="button" id="btn-update-user-modal" class="btn btn-primary custom-background-btn-primary" name="submit" value="Save">
                                                 <span></span>
-                                                <input type="reset" id="btn-cancel-user-modal" class="btn btn-default custom-background-btn-reset" value="Cancel">
+                                                <input type="button" id="btn-cancel-user-modal" class="btn btn-default custom-background-btn-reset" value="Cancel">
                                             </div>
                                         </div>
                                     </div>
@@ -141,7 +139,7 @@
                                         <div class="col-md-8">
                                             <input type="submit" class="btn btn-primary custom-background-btn-primary" value="Lưu lại">
                                             <span></span>
-                                            <input type="reset" class="btn btn-default custom-background-btn-reset" value="Hủy bỏ">
+                                            <input type="submit" class="btn btn-default custom-background-btn-reset" value="Hủy bỏ">
                                         </div>
                                     </div>
                                 </form>

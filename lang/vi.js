@@ -9,7 +9,9 @@ export const tranErrors = {
     ACCOUNT_NOT_ACTIVE: "Tài khoản đã tồn tại nhưng chưa xác thực, vui lòng kiểm tra email để hoàn thành việc đăng ký",
     TOKEN_NULL: "Token hết hiệu lực",
     LOGIN_FAILED: "Sai tài khoản hoặc mật khẩu",
-    SERVER_ERR: "Server bảo trì, liên hệ quản trị viên để được hỗ trợ"
+    SERVER_ERR: "Server bảo trì, liên hệ quản trị viên để được hỗ trợ",
+    AVATAR_TYPE: "Ảnh không hợp lệ, yêu cẩu PNG/JPG/JPEG",
+    AVATAR_SIZE: "Size ảnh quá lớn, yêu cầu không quá 1 MB"
 };
 
 export const tranSuccess = {
@@ -20,7 +22,8 @@ export const tranSuccess = {
     LOGIN_SUCCESS: () => {
         return "Đăng nhập thành công";
     },
-    LOGOUT_SUCCESS: "Đăng xuất thành công"
+    LOGOUT_SUCCESS: "Đăng xuất thành công",
+    AVATAR_UPDATE_SUCCESS: "Cập nhập avatar thành công"
 }; 
 
 export const tranMail = {

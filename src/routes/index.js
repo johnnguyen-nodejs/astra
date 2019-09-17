@@ -8,7 +8,8 @@ import {
     verifyAccount,
     getLogout,
     checkLogedIn,
-    checkLogedOut
+    checkLogedOut,
+    updateAvatar
 } from "../controllers/getRoute";
 import { authValid } from "../validation/index";
 import passport from "passport";
@@ -49,6 +50,7 @@ let initRouter = (app)=>{
         failureRedirect: "/auth"
     }));
     router.get('/logout', checkLogedIn, getLogout);
+    router.put('/user/update-avatar', checkLogedIn, updateAvatar);
     app.use("/", router);
 };
 module.exports = initRouter;
