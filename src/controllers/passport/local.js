@@ -46,7 +46,7 @@ let initPassportLocal = () =>{
             )
             .catch(
                 error => {
-                    return done(error. null);
+                    return done(error, null);
                 }
             );
     });

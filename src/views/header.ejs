@@ -7,22 +7,23 @@
         <title><%= title %></title>
         <link rel="shortcut icon" href="/images/logo_favicon/favicon-trungquandev.png" />
     
-        <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
-        <link rel="stylesheet" href="../bower_components/AlertifyJS/build/css/alertify.css">
-        <link rel="stylesheet" href="../bower_components/emojionearea/dist/emojionearea.min.css">
-        <link rel="stylesheet" href="../bower_components/photoset-grid/css/colorbox.css">
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="bower_components/AlertifyJS/build/css/alertify.css">
+        <link rel="stylesheet" href="bower_components/emojionearea/dist/emojionearea.min.css">
+        <link rel="stylesheet" href="bower_components/photoset-grid/css/colorbox.css">
         
-        <link href="../stylesheets/style.css" rel="stylesheet" />
-        <link href="../stylesheets/auth.css" rel="stylesheet" />
+        <link href="stylesheets/style.css" rel="stylesheet" />
+        <link href="stylesheets/auth.css" rel="stylesheet" />
     
-        <script src="../bower_components/jquery/dist/jquery.min.js"></script>
-        <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="../bower_components/AlertifyJS/build/alertify.js"></script>
+        <script src="bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="bower_components/AlertifyJS/build/alertify.js"></script>
 
         <!-- My js-->
-        <script src="../javascripts/main.js"></script>   
-        <script src="../javascripts/auth.js"></script>
+        <script src="javascripts/main.js"></script>   
+        <script src="javascripts/auth.js"></script>
+        <script src="javascripts/updateUser.js"></script>
     </head>
     <body onload="spinLoaded()">
             <!--Icon loader-->
@@ -40,7 +41,7 @@
                         <span class="icon-bar"></span>                        
                         </button>
                         <a class="navbar-brand" href="/" >
-                            <img src="../images/logo_favicon/logo-trungquandev.png" alt="logo-trungquandev">
+                            <img src="images/logo_favicon/logo-trungquandev.png" alt="logo-trungquandev">
                         </a>
                     </div>
                     <div class="col-sm-3 no-padding">
@@ -74,12 +75,12 @@
                                             <h3>Thông báo</h3>
                                             <div class="noti_content">
                                                 <span data-uid="${ user.id }">
-                                                    <img class="avatar-small" src="../images/users/default-avatar-trungquandev-01.jpg" alt=""> 
+                                                    <img class="avatar-small" src="images/users/default-avatar-trungquandev-01.jpg" alt=""> 
                                                     <strong>Trung Quân</strong> đã chấp nhận lời mời kết bạn của bạn!
                                                 </span><br><br><br>
         
                                                 <span data-uid="${ user.id }">
-                                                    <img class="avatar-small" src="../images/users/default-avatar-trungquandev-02.jpg" alt=""> 
+                                                    <img class="avatar-small" src="images/users/default-avatar-trungquandev-02.jpg" alt=""> 
                                                     <strong>Trung Quân</strong> đã gửi cho bạn một lời mời kết bạn!
                                                 </span><br><br><br>
                                             </div>
@@ -90,9 +91,11 @@
                             </li>
                             <li class="dropdown" id="dropdown-navbar-user">
                                 <a id="user-setting" class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <img class="avatar-small" src="../images/users/default-avatar-trungquandev-02.jpg" alt="">
-                                    Trung Quân
+                                    <% if(user) { %>
+                                    <img class="avatar-small" src="images/users/<%= user.avatar %>" alt="">
+                                    <%= user.username %>
                                     <span class="caret"></span>
+                                    <% }; %>
                                 </a>
                                 <ul class="dropdown-menu" id="user-info">
                                     <li>

@@ -1,17 +1,23 @@
 import {register, verifyAccount} from "./register";
-import { tranSuccess } from "./../../lang/vi";
 
 let getHome = (req, res)=>{
-        res.render("index", {title: "homepage"});
-    };
+    res.render("index", {
+        title: "homepage",
+        user: req.user
+    });
+};
 
 let getNotFound = (req, res)=>{
-    res.render("404", {title: "Page Not Found"});
+    res.render("404", {
+        title: "Page Not Found",
+        user: req.user
+    });
 };
 
 let getDashboard = (req, res)=>{
         res.render("dashboard", {
-            title: "dashboard"          
+            title: "dashboard",
+            user: req.user          
         });
     };
 
@@ -19,7 +25,8 @@ let getAuth = (req, res)=>{
         res.render("auth/auth", {
             title: "Authenticate",
             errors: req.flash("errors"),
-            success: req.flash("success")
+            success: req.flash("success"),
+            user: req.user
         });
     };
 
