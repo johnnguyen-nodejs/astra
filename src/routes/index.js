@@ -10,9 +10,10 @@ import {
     checkLogedIn,
     checkLogedOut,
     updateAvatar,
-    updateInfo
+    updateInfo,
+    updatePassword
 } from "../controllers/getRoute";
-import { authValid, userValid } from "../validation/index";
+import { authValid, userValid, passValid } from "../validation/index";
 import passport from "passport";
 import initPassportLocal from "./../controllers/passport/local";
 import initPassportFacebook from "./../controllers/passport/facebook";
@@ -53,6 +54,7 @@ let initRouter = (app)=>{
     router.get('/logout', checkLogedIn, getLogout);
     router.put('/user/update-avatar', checkLogedIn, updateAvatar);
     router.put('/user/update-info', checkLogedIn, userValid.updateInfo, updateInfo);
+    router.put('/user/update-password', checkLogedIn, passValid.updatePassword, updatePassword);
     app.use("/", router);
 };
 module.exports = initRouter;

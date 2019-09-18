@@ -9,9 +9,7 @@ let register = [
         .isLength({ min: 8})
         .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}$/),
     check("password_confirmation", tranValidation.PASSWORD_CONFIRM_INCORRECT)
-        .custom((value, {req})=>{
-            return value === req.body.password;
-        })
+        .custom((value, {req})=> value === req.body.password)
 ];
 
 module.exports = {
