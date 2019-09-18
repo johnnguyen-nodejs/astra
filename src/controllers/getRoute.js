@@ -1,5 +1,5 @@
 import {register, verifyAccount} from "./register";
-import {updateAvatar} from "./updateinfo";
+import {updateAvatar, updateInfo } from "./updateInfo";
 
 let getHome = (req, res)=>{
     res.render("index", {
@@ -60,5 +60,6 @@ module.exports = {
     getLogout: getLogout,
     checkLogedIn: checkLogedIn,
     checkLogedOut: checkLogedOut,
-    updateAvatar: updateAvatar
+    updateAvatar: updateAvatar,
+    updateInfo: updateInfo
 };

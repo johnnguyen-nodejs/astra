@@ -93,7 +93,7 @@
                                 <a id="user-setting" class="dropdown-toggle" data-toggle="dropdown" href="#">
                                     <% if(user) { %>
                                     <img id="navbar-avatar" class="avatar-small" src="images/avatars/<%= user.avatar %>" alt="">
-                                    <%= user.username %>
+                                    <span id="navbar-username"><%= user.username %></span>
                                     <span class="caret"></span>
                                     <% }; %>
                                 </a>
