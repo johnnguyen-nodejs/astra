@@ -14,7 +14,9 @@ export const tranErrors = {
     LOGIN_FAILED: "Sai tài khoản hoặc mật khẩu",
     SERVER_ERR: "Server bảo trì, liên hệ quản trị viên để được hỗ trợ",
     AVATAR_TYPE: "Ảnh không hợp lệ, yêu cẩu PNG/JPG/JPEG",
-    AVATAR_SIZE: "Size ảnh quá lớn, yêu cầu không quá 1 MB"
+    AVATAR_SIZE: "Size ảnh quá lớn, yêu cầu không quá 1 MB",
+    ACCOUNT_NOT_EXIST: "Tài khoản không tồn tại",
+    CHECK_CURRENT_PASS_FAILED: "Mật khẩu hiện tại không chính xác"
 };
 
 export const tranSuccess = {
@@ -26,7 +28,8 @@ export const tranSuccess = {
         return "Đăng nhập thành công";
     },
     LOGOUT_SUCCESS: "Đăng xuất thành công",
-    INFO_UPDATE_SUCCESS: "Cập nhập thông tin người dùng thành công"
+    INFO_UPDATE_SUCCESS: "Cập nhập thông tin người dùng thành công",
+    PASS_UPDATE_SUCCESS: "Cập nhập mật khẩu thành công"
 }; 
 
 export const tranMail = {

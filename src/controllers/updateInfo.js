@@ -80,7 +80,30 @@ let updateInfo = async (req, res)=> {
     }
 };
 
+let updatePassword = async (req, res)=> {
+    let errArr = [];
+    let validationErrors = validationResult(req);
+    if(!validationErrors.isEmpty()){
+        let errors = Object.values(validationErrors.mapped());
+        errors.forEach(item =>{
+            errArr.push(item.msg);
+        });
+        return res.status(500).send(errArr);  
+    };
+    try {
+        let updateUserItem = req.body;
+        await user.updatePassword(req.user._id, updateUserItem);
+        let result = {
+            message: tranSuccess.PASS_UPDATE_SUCCESS
+        };
+        return res.status(200).send(result);
+    } catch (error) {
+        return res.status(500).send(error);
+    }
+};
+
 module.exports = {
     updateAvatar: updateAvatar,
-    updateInfo: updateInfo
+    updateInfo: updateInfo,
+    updatePassword: updatePassword
 };
