@@ -2,7 +2,7 @@ require('dotenv').config();
 import passport from "passport";
 import passportFacebook from "passport-facebook";
 import UserModel from "./../../models/userModel";
-import {tranErrors} from "./../../../lang/vi";
+import {tranErrors} from "../../../lang/en";
 
 let FacebookStrategy = passportFacebook.Strategy;
 

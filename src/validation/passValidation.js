@@ -1,5 +1,5 @@
 import {check} from "express-validator/check";
-import { tranValidation } from "../../lang/vi"
+import { tranValidation } from "../../lang/en"
 
 let updatePassword = [
     check("currentPassword", tranValidation.PASSWORD_INCORRECT)

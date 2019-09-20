@@ -55,6 +55,10 @@ let initRouter = (app)=>{
     router.put('/user/update-avatar', checkLogedIn, updateAvatar);
     router.put('/user/update-info', checkLogedIn, userValid.updateInfo, updateInfo);
     router.put('/user/update-password', checkLogedIn, passValid.updatePassword, updatePassword);
+
+    router.get('*', function(req, res){
+        res.redirect("/404");
+      });
     app.use("/", router);
 };
 module.exports = initRouter;

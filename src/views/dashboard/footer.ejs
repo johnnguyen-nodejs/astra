@@ -1,0 +1,62 @@
+<footer class="footer">
+    <div class="container-fluid">
+      <nav class="float-left">
+        <ul>
+          <li>
+            <a class="social-footer-dashboard" href="/">
+              <i id="social-chan" class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="social-footer-dashboard" href="/">
+              <i id="social-chan" class="fa fa-telegram"></i>
+            </a>
+          </li>
+          <li>
+            <a class="social-footer-dashboard" href="/">
+              <i id="social-chan" class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="social-footer-dashboard" href="/">
+              <i id="social-chan" class="fa fa-reddit"></i>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="copyright float-right" id="date">
+        , Made  by
+        <a href="/" target="_blank">ASTRA Network</a>
+      </div>
+    </div>
+  </footer>
+  <script>
+    const x = new Date().getFullYear();
+    let date = document.getElementById('date');
+    date.innerHTML = '&copy; ' + x + date.innerHTML;
+  </script>
+</div>
+</div>
+ <!--   Core JS Files   -->
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="javascripts/plugins/popper.min.js"></script>
+  <script src="javascripts/plugins/bootstrap-material-design.min.js"></script>
+  <script src="https://unpkg.com/default-passive-events"></script>
+  <script src="javascripts/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <!-- Place this tag in your head or just before your close body tag. -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!-- Chartist JS -->
+  <script src="javascripts/plugins/chartist.min.js"></script>
+  <!--  Notifications Plugin    -->
+  <script src="javascripts/plugins/bootstrap-notify.js"></script>
+  <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="javascripts/plugins/dashboard.js"></script>
+  <script>
+    $(document).ready(function() {
+      // Javascript method's body can be found in assets/js/demos.js
+      md.initDashboardPageCharts();
+    });
+  </script>
+</body>
+
+</html>

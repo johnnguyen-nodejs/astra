@@ -42,6 +42,10 @@ body {
   background-repeat: none;
 }
 
+body::-webkit-scrollbar {
+    display: none;
+}
+
 .alertify-notifier .ajs-message.ajs-error {
   color: #fff;
 }
@@ -595,6 +599,10 @@ label:focus,
 
 .no-margin-bottom {
   margin-bottom: 0px;
+}
+
+nav.navbar.navbar-inverse.no-margin-bottom {
+    background: #202940;
 }
 
 .no-margin-right {

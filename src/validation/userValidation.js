@@ -1,5 +1,5 @@
 import {check} from "express-validator/check";
-import { tranValidation } from "../../lang/vi"
+import { tranValidation } from "../../lang/en"
 
 let updateInfo = [
     check("username", tranValidation.UPDATE_USERNAME)
@@ -11,7 +11,7 @@ let updateInfo = [
         .isLength({min:3, max: 20}),
     check("phone", tranValidation.UPDATE_PHONE)
         .optional()
-        .matches(/^(0)[0-9]{9-10}$/),   
+        .matches(/^(0)[0-9]{9,10}$/),   
 ];
 
 module.exports = {

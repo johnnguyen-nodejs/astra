@@ -1,5 +1,5 @@
 import {check} from "express-validator/check";
-import { tranValidation } from "../../lang/vi"
+import { tranValidation } from "../../lang/en"
 
 let register = [
     check("email", tranValidation.EMAIL_INCORRECT)

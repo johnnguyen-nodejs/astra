@@ -1,5 +1,5 @@
 import UserModel from "./../models/userModel";
-import { tranErrors } from "./../../lang/vi";
+import { tranErrors } from "../../lang/en";
 import bcrypt from "bcrypt";
 
 const saltRounds = 7;
