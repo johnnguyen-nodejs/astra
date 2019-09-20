@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="apple-touch-icon" sizes="76x76" href="images/dashboard/apple-icon.png">
+  <link rel="icon" type="image/png" href="images/logo_favicon/favicon-trungquandev.png">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>ASTRA | <%= title %></title>
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <!-- CSS Files -->
+  <link href="stylesheets/dashboard.css" rel="stylesheet" />
+</head>
+
+<body class="dark-edition">
+  <div class="top-menu">
+      <div class="container-fluid">
+        <div class="top-small-menu">
+          <a class="top-menu-logo" href="/">
+              <img src="images/logo_favicon/logo-trungquandev.png" alt="logo-trungquandev">
+          </a>
+          <div class="menu-top-right" style="color: white">
+            <img id="avatar-top-right" src="images/avatars/<%= user.avatar%>"><%= user.username %>
+          </div>
+        </div>
+        
+    </div>
+  </div>
+  
+  <div class="wrapper ">
+    <div class="sidebar" data-color="purple" data-background-color="black" data-image="images/dashboard/sidebar-2.jpg">
+      <div class="logo text-center" style="color: white">
+        <img id="avatar-dashboard" src="images/avatars/<%= user.avatar%>">
+        &nbsp;<%= user.username %>
+      </div>
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="#user-dashboard">
+              <i class="material-icons">dashboard</i>
+              <p>Dashboard</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="#user-profile">
+              <i class="material-icons">person</i>
+              <p>Profile</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="#user-invest">
+              <i class="fa fa-money"></i>
+              <p>Invest ASTRA</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="#user-wallet">
+              <i class="fa fa-google-wallet" aria-hidden="true"></i>
+              <p>Wallet</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="#user-affiliate">
+              <i class="material-icons">bubble_chart</i>
+              <p>Affilate</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="#user-notification">
+              <i class="material-icons">notifications</i>
+              <p>Notification</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="/logout">
+              <i class="fa fa-sign-out"></i>
+              <p>Log Out</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
+          <div class="container-fluid">
+            <div class="navbar-wrapper">
+              <a class="navbar-brand" href="javascript:void(0)" id="name-select">Dashboard</a>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation" data-target="#navigation-example">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="navbar-toggler-icon icon-bar"></span>
+              <span class="navbar-toggler-icon icon-bar"></span>
+              <span class="navbar-toggler-icon icon-bar"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="javascript:void(0)">
+                    <i class="material-icons">dashboard</i>
+                    <p class="d-lg-none d-md-block">
+                      Stats
+                    </p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="javascript:void(0)">
+                    <i class="material-icons">person</i>
+                    <p class="d-lg-none d-md-block">
+                      Account
+                    </p>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>

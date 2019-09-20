@@ -8,8 +8,8 @@ function callLogout(){
     let timerInterval;
     Swal.fire({
         position: "top-end",
-        title: "Đăng xuất Sau 5s",
-        html: "Thời gian: <strong></strong>",
+        title: "Log Out After 5s",
+        html: "Time: <strong></strong>",
         timer: 5000,
         onBeforeOpen: ()=> {
             Swal.showLoading();
@@ -34,12 +34,12 @@ function updateUserInfo() {
         let limit = 1048576; // 1MB
 
         if($.inArray(fileData.type, math) === -1) {
-            alertify.notify("Ảnh không hợp lệ, yêu cẩu PNG/JPG/JPEG", "error", 7);
+            alertify.notify("File not valid, require PNG/JPG/JPEG", "error", 7);
             $(this).val(null);
             return false;
         }
         if(fileData.size > limit) {
-            alertify.notify("Size ảnh quá lớn, yêu cầu không quá 1 MB", "error", 7);
+            alertify.notify("File too large, require maxximum 1 MB", "error", 7);
             $(this).val(null);
             return false;
         }
@@ -61,7 +61,7 @@ function updateUserInfo() {
             formData.append("avatar", fileData);
             userAvatar = formData;
         } else {
-            alertify.notify("Trình duyệt không hỡ trợ file upload", "error", 7);     
+            alertify.notify("Browser not support this file", "error", 7);     
         }
     });
     $("#input-change-username").bind("change", function() {
@@ -69,7 +69,7 @@ function updateUserInfo() {
         let regexUsername = new RegExp(/^[\s0-9a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]+$/);
 
         if(!regexUsername.test(username) || username.length < 3 || username.length > 20 ) {
-            alertify.notify("Tên người dùng không hợp lệ", "error", 7);
+            alertify.notify("Username not Valid", "error", 7);
             $(this).val(originUserInfo.username);
             delete userInfo.username;
             return false;
@@ -80,7 +80,7 @@ function updateUserInfo() {
     $("#input-change-address").bind("change", function() {
         let address = $(this).val();
         if(address.length < 3 || address.length > 20) {
-            alertify.notify("Địa chỉ người dùng không hợp lệ", "error", 7);
+            alertify.notify("Address not Valid", "error", 7);
             $(this).val(originUserInfo.address);
             delete userInfo.address;
             return false;
@@ -89,10 +89,10 @@ function updateUserInfo() {
     });
     $("#input-change-phone").bind("change", function() {
         let phone = $(this).val();
-        let regexPhone = new RegExp(/^(0)[0-9]{9-10}$/);
+        let regexPhone = new RegExp(/^(0)[0-9]{9,10}$/);
 
         if(!regexPhone.test(phone)) {
-            alertify.notify("Số điện thoại người dùng không hợp lệ", "error", 7);
+            alertify.notify("Phone Numeber is not Valid", "error", 7);
             $(this).val(originUserInfo.phone);
             delete userInfo.phone;
             return false;
@@ -104,7 +104,7 @@ function updateUserInfo() {
         let regexPassword = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}$/);
 
         if(!regexPassword.test(currentPassword)) {
-            alertify.notify("Mật khẩu không hợp lệ", "error", 7);
+            alertify.notify("Password is not Valid", "error", 7);
             $(this).val(null);
             delete userUpdatePassword.currentPassword;
             return false;
@@ -116,7 +116,7 @@ function updateUserInfo() {
         let regexPassword = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}$/);
 
         if(!regexPassword.test(newPassword)) {
-            alertify.notify("Mật khẩu mới không hợp lệ", "error", 7);
+            alertify.notify("Password is not Valid", "error", 7);
             $(this).val(null);
             delete userUpdatePassword.newPassword;
             return false;
@@ -127,13 +127,13 @@ function updateUserInfo() {
         let confirmNewPassword = $(this).val();
 
         if(!userUpdatePassword.newPassword) {
-            alertify.notify("Chưa nhập mật khẩu mới", "error", 7);
+            alertify.notify("Please Enter New Password", "error", 7);
             $(this).val(null);
             delete userUpdatePassword.confirmNewPassword;
             return false;
         }
         if(confirmNewPassword !== userUpdatePassword.newPassword) {
-            alertify.notify("Nhập lại mật khẩu chưa chính xác", "error", 7);
+            alertify.notify("Password not match!", "error", 7);
             $(this).val(null);
             delete userUpdatePassword.confirmNewPassword;
             return false;

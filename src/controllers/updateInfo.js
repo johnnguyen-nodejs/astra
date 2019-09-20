@@ -1,6 +1,6 @@
 import multer from "multer";
 import { appConfig } from "../config/appConfig";
-import { tranErrors, tranSuccess } from "../../lang/vi";
+import { tranErrors, tranSuccess } from "../../lang/en";
 import uuidv4 from "uuid/v4";
 import {user} from "../services/index";
 import fsExtra from "fs-extra";

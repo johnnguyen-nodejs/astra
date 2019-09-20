@@ -3,28 +3,28 @@ import {updateAvatar, updateInfo, updatePassword } from "./updateInfo";
 
 let getHome = (req, res)=>{
     res.render("index", {
-        title: "homepage",
+        title: "Home",
         user: req.user
     });
 };
 
 let getNotFound = (req, res)=>{
     res.render("404", {
-        title: "Page Not Found",
+        title: "Not Found",
         user: req.user
     });
 };
 
 let getDashboard = (req, res)=>{
-        res.render("dashboard", {
-            title: "dashboard",
+        res.render("dashboard/user-dashboard", {
+            title: "Dashboard",
             user: req.user          
         });
     };
 
 let getAuth = (req, res)=>{
         res.render("auth/auth", {
-            title: "Authenticate",
+            title: "Đăng nhập, đăng ký",
             errors: req.flash("errors"),
             success: req.flash("success"),
             user: req.user

@@ -2,7 +2,7 @@ require('dotenv').config();
 import passport from "passport";
 import passportGoogle from "passport-google-oauth";
 import UserModel from "./../../models/userModel";
-import {tranErrors} from "./../../../lang/vi";
+import {tranErrors} from "../../../lang/en";
 
 let GoogleStrategy = passportGoogle.OAuth2Strategy;
 
