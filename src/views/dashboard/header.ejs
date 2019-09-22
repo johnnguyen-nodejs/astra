@@ -12,8 +12,18 @@
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <script type="text/javascript" src="javascripts/home/jquery-3.4.1.min.js"></script>
+  <link rel="stylesheet" href="bower_components/AlertifyJS/build/css/alertify.css">
+  
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  
+  
   <!-- CSS Files -->
   <link href="stylesheets/dashboard.css" rel="stylesheet" />
+  
+  
+  
 </head>
 
 <body class="dark-edition">
@@ -21,10 +31,19 @@
       <div class="container-fluid">
         <div class="top-small-menu">
           <a class="top-menu-logo" href="/">
-              <img src="images/logo_favicon/logo-trungquandev.png" alt="logo-trungquandev">
+              <img src="images/home/logo.jpg" alt="logo-astra">
           </a>
           <div class="menu-top-right" style="color: white">
-            <img id="avatar-top-right" src="images/avatars/<%= user.avatar%>"><%= user.username %>
+            <a id="click-menu-dashboard-down" href="javascripts:void(0)">
+              <img id="avatar-top-right" src="images/avatars/<%= user.avatar%>"><%= user.username %>
+            </a>
+            <div class="click-menu-down">
+                <a href="/dashboard"><li class="down-dashboar">Dashboard</li></a>
+                <a href="#user-profile-modal" data-toggle="modal"><li class="down-dashboar">Setting</li></a>
+                <a href="/logout"><li class="down-dashboar">logout</li></a>
+            </div>
+            
+            
           </div>
         </div>
         

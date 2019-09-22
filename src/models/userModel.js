@@ -5,9 +5,10 @@ let Schema = mongoose.Schema;
 
 let UserSchema = new Schema({
     username: String,
+    refferal: String,
     avatar: {
         type: String,
-        default: "avatar-default.jpg"
+        default: "default.png"
     },
     phone: {
         type: Number,

@@ -418,6 +418,19 @@ $(document).ready(function(){
     return false;
   });
   checkMenu($(".sidebar-wrapper ul.nav li.nav-item")[0]);
+  function checkSettingModal(obj){
+    $(".modal-body ul.nav li").removeClass("active");
+    $(obj).addClass("active");
+    var id = $(obj).find('a').attr("href");
+    
+    $(".modal-body .tab-content .tab-pane").hide();
+    $(id).show();
+  };
+  $(".modal-body ul.nav li").bind("click", function(){
+    checkSettingModal(this);
+    return false;
+  });
+  checkSettingModal($(".modal-body ul.nav li")[0]);
 });
 
 

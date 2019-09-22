@@ -603,6 +603,7 @@ label:focus,
 
 nav.navbar.navbar-inverse.no-margin-bottom {
     background: #202940;
+    height: 70px;
 }
 
 .no-margin-right {
