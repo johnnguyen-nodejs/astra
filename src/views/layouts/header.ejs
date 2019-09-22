@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title><%= title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <script type="text/javascript" src="javascripts/home/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="stylesheets/home/bootstrap.min.css">
+    <link rel="stylesheet" href="stylesheets/home/bootstrap-res.css">
+    <link href="https://web.tttt.vn/upload/e462e8f2-1b9a-11e9-a731-b51e02432c4b/2019/07/1564479235_icon_q.png"
+        type="image/x-icon" rel="shortcut icon">
+    <link href="stylesheets/home/icomoon.css" rel="stylesheet">
+    <link href="stylesheets/home/google-fonts.css" rel="stylesheet">
+    <link href="stylesheets/home/ishopdesign.view.min.css" rel="stylesheet">
+    <link href="stylesheets/home/slick.min.css" rel="stylesheet">
+    <link href="stylesheets/home/style.css" rel="stylesheet">
+    <link href="stylesheets/auth.css" rel="stylesheet" />
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="bower_components/photoset-grid/css/colorbox.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/AlertifyJS/build/alertify.js"></script>
+    <link rel="stylesheet" href="bower_components/AlertifyJS/build/css/alertify.css">
+    <!-- My js-->
+    <script src="javascripts/main.js"></script>   
+    <script src="javascripts/auth.js"></script>
+    <script src="javascripts/updateUser.js"></script>
+</head>
+
+<body style="font-family: segoe ui;"onload="spinLoaded()">
+        <!--Icon loader-->
+    <div id="loader"></div>
+    <div id="isd_app">
+        <div id="isd_wrap_main" class=" isd_ios_scroll">
+            <div id="isd_main" class="isd_scr_mn_576 isd_scr_mn_768 isd_scr_mn_992 isd_scr_mn_1200 isd_desktop_mode">
+                <section id="content_section">
+                    <div class="wrap-container bg_opacity menu_top">
+                        <div class="wrap_box">
+                            <div id="axBAc" data-id="axBAc" class="isd_container container-fluid bg_opacity menu_top"
+                                style="width: 100%; padding-top: 15px; padding-bottom: 15px; max-width: 1700px; position: relative;">
+                                <div id="4TuDJ" class="isd_row row " style="order: 5; padding: 0px; margin: 0px;">
+                                    <div id="g5VH7" data-id="g5VH7"
+                                        class="isd_column mb-4 mb-md-0 col-2 full_768 no_margin">
+                                        <div class="ans_col_items">
+                                            <div class="isd_object_item maxw_120" style="width: 100%;">
+                                                <a href="/" target="_self">
+                                                    <img class=" img-fluid" id="62Chu" src="images/home/logo.jpg"
+                                                        alt="Loading Image ..." style="width: 150px;">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="YFzxX" data-id="YFzxX" class="isd_column ml-md-auto col-10 full_768">
+                                        <div class="ans_col_items">
+                                            <div class="isd_object_item" style="width: 100%; text-align: right;">
+                                                <div id="wt4Ej" class="ans_html_item"
+                                                    style="text-align: right; margin-top: 12px;">
+                                                    <div class="main_menu astra_menu full_768">
+                                                        <ul>
+                                                            <li class="quick_link" data-url="#"><a
+                                                                    href="/">Home</a>
+                                                            </li>
+                                                            <li class="quick_link" data-url="#team_block"><a
+                                                                    href="/team">Team</a></li>
+                                                            <li class="quick_link" data-url="#contact_block"><a href="/contact">Contact</a>
+                                                            </li>
+                                                            <li class="quick_link"><a
+                                                                    href="https://drive.google.com/drive/folders/1LAjlNmIw1Er87i924cNWf2HI5k7GA8O3?usp=sharing"
+                                                                    target="_blank">White paper</a>
+                                                            </li>
+                                                            <% if(!user) { %>
+                                                            <li class="button"><a href="/auth">SignIn/SignUp</a></li>
+                                                            <% } else { %>
+                                                            <li><img id="logo-left-top"
+                                                                    src="images/avatars/<%= user.avatar %>"
+                                                                    alt="avatar"> <%= user.username %></li>
+                                                            <% }; %>
+                                                            <li class="menu_mobile icon"><span
+                                                                    class="icon-th-menu"></span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>

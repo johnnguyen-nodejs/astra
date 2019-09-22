@@ -150,6 +150,11 @@
       }
     });
   }
+  function downMenuDashboard(){
+    $("#click-menu-dashboard-down").bind("click", function(){
+      $(".click-menu-down").toggleClass("active");
+    });
+  }
   
   $(document).ready(function() {
     // Hide số thông báo trên đầu icon mở modal contact
@@ -158,7 +163,7 @@
     // Bật tắt popup notification
     configNotification();
     configUserMenu();
-  
+    downMenuDashboard();
     // // Cấu hình thanh cuộn
     // nineScrollLeft();
     // nineScrollRight();

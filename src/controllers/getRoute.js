@@ -7,6 +7,18 @@ let getHome = (req, res)=>{
         user: req.user
     });
 };
+let getTeam = (req, res)=>{
+    res.render("team", {
+        title: "Our Team",
+        user: req.user
+    });
+};
+let getContact = (req, res)=>{
+    res.render("contact", {
+        title: "Contact Us",
+        user: req.user
+    });
+};
 
 let getNotFound = (req, res)=>{
     res.render("404", {
@@ -23,8 +35,8 @@ let getDashboard = (req, res)=>{
     };
 
 let getAuth = (req, res)=>{
-        res.render("auth/auth", {
-            title: "Đăng nhập, đăng ký",
+        res.render("auth", {
+            title: "Authenticate",
             errors: req.flash("errors"),
             success: req.flash("success"),
             user: req.user
@@ -52,6 +64,8 @@ let checkLogedOut = (req, res, next) => {
 
 module.exports = {
     getHome: getHome,
+    getTeam: getTeam,
+    getContact: getContact,
     getNotFound,
     getDashboard: getDashboard,
     getAuth: getAuth,

@@ -41,6 +41,8 @@ body {
 
 .modal-title {
   color: #2c3e50;
+  width: 100%;
+  text-align: center;
 }
 
 hr {
@@ -187,6 +189,7 @@ hr {
 
 .login .modal-dialog {
   width: 500px;
+  margin-top: 120px;
 }
 
 .login .modal-footer {

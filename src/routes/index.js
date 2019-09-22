@@ -1,6 +1,8 @@
 import express from "express";
 import {
     getHome, 
+    getTeam, 
+    getContact, 
     getNotFound,
     getDashboard, 
     getAuth,
@@ -15,7 +17,7 @@ import {
 } from "../controllers/getRoute";
 import { authValid, userValid, passValid } from "../validation/index";
 import passport from "passport";
-import initPassportLocal from "./../controllers/passport/local";
+import {initPassportLocal, getGeetest, postGeetest } from "./../controllers/passport/local";
 import initPassportFacebook from "./../controllers/passport/facebook";
 import initPassportGoogle from "./../controllers/passport/google";
 
@@ -23,13 +25,16 @@ import initPassportGoogle from "./../controllers/passport/google";
 initPassportLocal();
 initPassportFacebook();
 initPassportGoogle();
-
 let router = express.Router();
 /**
  * init routes 
  */
 let initRouter = (app)=>{
+    router.get('/geetest', getGeetest);
+    router.post('/geetest', postGeetest);
     router.get('/', getHome );
+    router.get('/team', getTeam );
+    router.get('/contact', getContact );
     router.get('/404', getNotFound );
     router.get('/dashboard', checkLogedIn, getDashboard );
     router.get('/auth', checkLogedOut, getAuth );
@@ -40,7 +45,7 @@ let initRouter = (app)=>{
         failureRedirect: "/auth",
         successFlash: true,
         failureFlash: true
-    }));
+    }) );
     router.get("/auth/facebook", passport.authenticate("facebook", {scope: ["email"]}));
     router.get("/auth/facebook/callback", passport.authenticate("facebook", {
         successRedirect: "/",

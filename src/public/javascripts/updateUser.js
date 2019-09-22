@@ -68,7 +68,7 @@ function updateUserInfo() {
         let username = $(this).val();
         let regexUsername = new RegExp(/^[\s0-9a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]+$/);
 
-        if(!regexUsername.test(username) || username.length < 3 || username.length > 20 ) {
+        if(!regexUsername.test(username) || username < 3 ) {
             alertify.notify("Username not Valid", "error", 7);
             $(this).val(originUserInfo.username);
             delete userInfo.username;
@@ -153,7 +153,8 @@ function callUpdateUserAvatar() {
         success: function(result){
             $(".user-modal-alert-success").find("span").text(result.message);
             $(".user-modal-alert-success").css("display", "block");
-            $("#navbar-avatar").attr("src", result.imageSrc);
+            $("#avatar-top-right").attr("src", result.imageSrc);
+            $("#avatar-dashboard").attr("src", result.imageSrc);
             originAvatarSrc = result.imageSrc;
             $("#btn-cancel-user-modal").click();
             setTimeout(function() {
@@ -237,12 +238,14 @@ $(document).ready(function() {
         phone: $("#input-change-phone").val(),
     };
 
-    updateUserInfo();
+    
     $("#btn-update-user-modal").bind("click", function(){
+        updateUserInfo();
         if($.isEmptyObject(userInfo) && !userAvatar){
-            alertify.notify("Thông tin cập nhập trống", "error", 7);
+            alertify.notify("Data empty", "error", 7);
             return false;
         }
+
         if(userAvatar){
             callUpdateUserAvatar();
         }

@@ -1,13 +1,11 @@
-/**
- * Created by https://trungquandev.com's author on 25/02/2018.
- */
+
 function showRegisterForm() {
     $('.loginBox').fadeOut('fast', function() {
       $('.registerBox').fadeIn('fast');
       $('.login-footer').fadeOut('fast', function() {
         $('.register-footer').fadeIn('fast');
       });
-      $('.modal-title').html('Đăng ký tài khoản');
+      $('.modal-title').html('Sign Up');
     });
     $('.error').removeClass('alert alert-danger').html('');
   
@@ -20,27 +18,27 @@ function showRegisterForm() {
         $('.login-footer').fadeIn('fast');
       });
   
-      $('.modal-title').html('Đăng nhập');
+      $('.modal-title').html('Log In');
     });
     $('.error').removeClass('alert alert-danger').html('');
   }
   
   function openLoginModal() {
     setTimeout(function() {
-      $('#loginModal').modal('show');
+     window.$('#loginModal').modal('show');
       showLoginForm();
     }, 230);
     setTimeout(function() {
       $('#closeAlert').css('display', 'none');
     }, 4000);  
   }
-  
   function openRegisterModal() {
     setTimeout(function() {
-      $('#loginModal').modal('show');
+      window.$("#loginModal").modal('show');
       showRegisterForm();
     }, 230);
     setTimeout(function() {
       $('#closeAlert').css('display', 'none');
     }, 4000);
   }
+  
