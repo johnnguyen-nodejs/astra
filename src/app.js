@@ -50,7 +50,8 @@ configSession(app);
 //config view engine
 viewConfig(app);
 //config body parseur
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 //Enable err messages
 app.use(connectFlash());
 //config passport
@@ -58,6 +59,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 //config routes
 initRouter(app);
+
 
 app.listen(process.env.APP_PORT, process.env.APP_HOST, ()=>{
     console.log(` listening on port: ${process.env.APP_PORT}`);

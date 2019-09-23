@@ -1,5 +1,6 @@
 export const tranValidation ={
     EMAIL_INCORRECT: "Email Invalid",
+    REFFERAL_LINK_INCORRECT: "Refferal Link Invalid",
     PASSWORD_INCORRECT: "Password must be eight characters long and contain at least one lowercase letter, one uppercase letter, one number, and one special character",
     PASSWORD_CONFIRM_INCORRECT: "Password and confirm password does not match",
     UPDATE_USERNAME: "Username invalid",

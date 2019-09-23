@@ -1,11 +1,13 @@
+
 import UserModel from "./../models/userModel";
 import bcrypt from "bcrypt";
 import uuidv4 from "uuid/v4";
 import { tranErrors, tranSuccess, tranMail } from "../../lang/en";
 import sendMail from "./../config/mailer";
 
+
 let saltRounds = 7;
-let register = async (email, password, protocol, host) => {
+let register = async (email, password, parent, protocol, host) => {
     return new Promise(async (resolve, reject) => {
         let userByEmail = await UserModel.findByEmail(email);
         if(userByEmail){
@@ -17,13 +19,17 @@ let register = async (email, password, protocol, host) => {
         let salt = bcrypt.genSaltSync(saltRounds);
         let userItem = {
             username: email.split("@")[0],
+            parent: parent,
             local: {
                 email: email,
                 password: bcrypt.hashSync(password, salt),
                 verifyToken: uuidv4()
             }
         };
-        let user = await UserModel.createNew(userItem);
+        let user = await UserModel.createNew(userItem)
+        let refferer = `${protocol}://${host}/register?refferer=${user._id}`;
+        await UserModel.updateUser(user._id, {"refferer": refferer});
+
         let linkVerify = `${protocol}://${host}/verify/${user.local.verifyToken}`;
         //send email
         sendMail(email , tranMail.SUBJECT, tranMail.TEMPLATE(linkVerify))

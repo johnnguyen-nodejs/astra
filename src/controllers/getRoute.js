@@ -34,9 +34,19 @@ let getDashboard = (req, res)=>{
         });
     };
 
-let getAuth = (req, res)=>{
-        res.render("auth", {
-            title: "Authenticate",
+let getRegister = (req, res)=>{
+        console.log(req.query.refferer);
+        res.render("authentication/register", {
+            title: "Register",
+            errors: req.flash("errors"),
+            success: req.flash("success"),
+            user: req.user,
+            parent: req.query.refferer
+        });
+    };
+let getLogin = (req, res)=>{
+        res.render("authentication/login", {
+            title: "Login",
             errors: req.flash("errors"),
             success: req.flash("success"),
             user: req.user
@@ -45,12 +55,12 @@ let getAuth = (req, res)=>{
 
 let getLogout = (req, res) => {
     req.logout();
-    return res.redirect("/auth");
+    return res.redirect("/login");
 };
 
 let checkLogedIn = (req, res, next) => {
     if(!req.isAuthenticated()){
-        return res.redirect("/auth");
+        return res.redirect("/login");
     };
     next();
 };
@@ -68,7 +78,8 @@ module.exports = {
     getContact: getContact,
     getNotFound,
     getDashboard: getDashboard,
-    getAuth: getAuth,
+    getRegister: getRegister,
+    getLogin: getLogin,
     postRegister: register,
     verifyAccount: verifyAccount,
     getLogout: getLogout,
