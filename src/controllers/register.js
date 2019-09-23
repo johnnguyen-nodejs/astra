@@ -1,6 +1,7 @@
 import { validationResult } from "express-validator/check";
 import { auth } from "./../services/index";
 
+
 let register = async (req, res)=>{
     let errArr = [];
     let successArr = [];
@@ -11,18 +12,43 @@ let register = async (req, res)=>{
             errArr.push(item.msg);
         });
         req.flash("errors", errArr)
-        return res.redirect("/auth");  
+        return res.redirect("/register");  
     };
-    try {
-        let userCreateSuccess = await auth.register(req.body.email, req.body.password, req.protocol, req.get("host"));
-        successArr.push(userCreateSuccess);
-        req.flash("success", successArr);
-        return res.redirect("/auth");
-    } catch (error) {
-        errArr.push(error);
-        req.flash("errors", errArr);
-        return res.redirect("/auth");
-    };  
+    if (!req.body.parent && !parent) {
+        try {
+            let userCreateSuccess = await auth.register(req.body.email, req.body.password, process.env.ADMIN_REF, req.protocol, req.get("host"));
+            successArr.push(userCreateSuccess);
+            req.flash("success", successArr);
+            return res.redirect("/register");
+        } catch (error) {
+            errArr.push(error);
+            req.flash("errors", errArr);
+            return res.redirect("/register");
+        };
+    } else if(parent){
+        try {
+            let userCreateSuccess = await auth.register(req.body.email, req.body.password, req.query.refferer, req.protocol, req.get("host"));
+            successArr.push(userCreateSuccess);
+            req.flash("success", successArr);
+            return res.redirect("/register");
+        } catch (error) {
+            errArr.push(error);
+            req.flash("errors", errArr);
+            return res.redirect("/register");
+        };
+    } else {
+        try {
+            let userCreateSuccess = await auth.register(req.body.email, req.body.password, req.body.parent, req.protocol, req.get("host"));
+            successArr.push(userCreateSuccess);
+            req.flash("success", successArr);
+            return res.redirect("/register");
+        } catch (error) {
+            errArr.push(error);
+            req.flash("errors", errArr);
+            return res.redirect("/register");
+        };
+    }
+      
 };
 let verifyAccount = async (req, res) =>{
     let errArr = [];
@@ -32,11 +58,11 @@ let verifyAccount = async (req, res) =>{
         let verifySuccess = await auth.verifyAccount(req.params.token);
         successArr.push(verifySuccess);
         req.flash("success", successArr);
-        return res.redirect("/auth");
+        return res.redirect("/login");
     } catch (error) {
         errArr.push(error);
         req.flash("errors", errArr);
-        return res.redirect("/auth");
+        return res.redirect("/register");
     }
 };
 module.exports = {

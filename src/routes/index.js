@@ -5,7 +5,8 @@ import {
     getContact, 
     getNotFound,
     getDashboard, 
-    getAuth,
+    getRegister,
+    getLogin,
     postRegister,
     verifyAccount,
     getLogout,
@@ -37,24 +38,25 @@ let initRouter = (app)=>{
     router.get('/contact', getContact );
     router.get('/404', getNotFound );
     router.get('/dashboard', checkLogedIn, getDashboard );
-    router.get('/auth', checkLogedOut, getAuth );
+    router.get('/register', checkLogedOut, getRegister );
+    router.get('/login', checkLogedOut, getLogin );
     router.get('/verify/:token', checkLogedOut, verifyAccount );
     router.post('/register', checkLogedOut, authValid.register, postRegister);
     router.post('/login', checkLogedOut, passport.authenticate("local", {
         successRedirect: "/",
-        failureRedirect: "/auth",
+        failureRedirect: "/login",
         successFlash: true,
         failureFlash: true
     }) );
     router.get("/auth/facebook", passport.authenticate("facebook", {scope: ["email"]}));
     router.get("/auth/facebook/callback", passport.authenticate("facebook", {
         successRedirect: "/",
-        failureRedirect: "/auth"
+        failureRedirect: "/login"
     }));
     router.get("/auth/google", passport.authenticate("google", {scope: ["email"]}));
     router.get("/auth/google/callback", passport.authenticate("google", {
         successRedirect: "/",
-        failureRedirect: "/auth"
+        failureRedirect: "/login"
     }));
     router.get('/logout', checkLogedIn, getLogout);
     router.put('/user/update-avatar', checkLogedIn, updateAvatar);
