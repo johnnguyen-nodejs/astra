@@ -14,20 +14,9 @@ let register = async (req, res)=>{
         req.flash("errors", errArr)
         return res.redirect("/register");  
     };
-    if (!req.body.parent && !parent) {
+    if (!req.body.parent) {
         try {
             let userCreateSuccess = await auth.register(req.body.email, req.body.password, process.env.ADMIN_REF, req.protocol, req.get("host"));
-            successArr.push(userCreateSuccess);
-            req.flash("success", successArr);
-            return res.redirect("/register");
-        } catch (error) {
-            errArr.push(error);
-            req.flash("errors", errArr);
-            return res.redirect("/register");
-        };
-    } else if(parent){
-        try {
-            let userCreateSuccess = await auth.register(req.body.email, req.body.password, req.query.refferer, req.protocol, req.get("host"));
             successArr.push(userCreateSuccess);
             req.flash("success", successArr);
             return res.redirect("/register");

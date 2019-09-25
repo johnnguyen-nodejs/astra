@@ -27,8 +27,9 @@ let register = async (email, password, parent, protocol, host) => {
             }
         };
         let user = await UserModel.createNew(userItem)
-        let refferer = `${protocol}://${host}/register?refferer=${user._id}`;
+        let refferer = user._id;
         await UserModel.updateUser(user._id, {"refferer": refferer});
+        await UserModel.IncreaseInvester(user.parent);
 
         let linkVerify = `${protocol}://${host}/verify/${user.local.verifyToken}`;
         //send email

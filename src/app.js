@@ -7,6 +7,7 @@ import bodyParser from "body-parser";
 import connectFlash from "connect-flash";
 import configSession from "./config/session";
 import passport from "passport";
+import live from "./hook/app";
 
 // import pem from "pem";
 // import https from "https";

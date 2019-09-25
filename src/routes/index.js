@@ -5,6 +5,7 @@ import {
     getContact, 
     getNotFound,
     getDashboard, 
+    getAdmin, 
     getRegister,
     getLogin,
     postRegister,
@@ -14,9 +15,10 @@ import {
     checkLogedOut,
     updateAvatar,
     updateInfo,
-    updatePassword
+    updatePassword,
+    updateWallet
 } from "../controllers/getRoute";
-import { authValid, userValid, passValid } from "../validation/index";
+import { authValid, userValid, passValid, walletValid } from "../validation/index";
 import passport from "passport";
 import {initPassportLocal, getGeetest, postGeetest } from "./../controllers/passport/local";
 import initPassportFacebook from "./../controllers/passport/facebook";
@@ -38,6 +40,7 @@ let initRouter = (app)=>{
     router.get('/contact', getContact );
     router.get('/404', getNotFound );
     router.get('/dashboard', checkLogedIn, getDashboard );
+    router.get('/admin', checkLogedIn, getAdmin );
     router.get('/register', checkLogedOut, getRegister );
     router.get('/login', checkLogedOut, getLogin );
     router.get('/verify/:token', checkLogedOut, verifyAccount );
@@ -62,6 +65,7 @@ let initRouter = (app)=>{
     router.put('/user/update-avatar', checkLogedIn, updateAvatar);
     router.put('/user/update-info', checkLogedIn, userValid.updateInfo, updateInfo);
     router.put('/user/update-password', checkLogedIn, passValid.updatePassword, updatePassword);
+    router.put('/user/update-wallet', checkLogedIn, walletValid.updateWallet, updateWallet);
 
     router.get('*', function(req, res){
         res.redirect("/404");

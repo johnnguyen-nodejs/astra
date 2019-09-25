@@ -33,8 +33,31 @@ let updatePassword = (id, dataUpdate) => {
         resolve(true);
     });
 }
+/**
+ * update password
+ * @param {userId} id 
+ * @param {data update} dataUpdate 
+ */
+let updateWallet = (id, dataUpdate) => {
+    return new Promise(async (resolve, reject)=> {
+        let currentUser = await UserModel.findUserById(id);
+        if(!currentUser) {
+            return reject(tranErrors.ACCOUNT_NOT_EXIST);
+        }
+        let checkCurrentPassword = await currentUser.comparePassword(dataUpdate.password);
+        if(!checkCurrentPassword) {
+            return reject(tranErrors.CHECK_CURRENT_PASS_FAILED);
+        }
+        if(currentUser.wallet !== "0x0"){
+            return reject(tranErrors.WALLET_ALREADY_UPDATED);
+        }
+        await UserModel.updateWallet(id, dataUpdate.wallet);
+        resolve(true);
+    });
+}
 
 module.exports = {
     updateUser: updateUser,
-    updatePassword: updatePassword
+    updatePassword: updatePassword,
+    updateWallet: updateWallet
 };

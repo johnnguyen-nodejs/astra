@@ -1,5 +1,6 @@
 export const tranValidation ={
     EMAIL_INCORRECT: "Email Invalid",
+    WALLET_INCORRECT: "ERC20 WALLET ADDRESS Invalid",
     REFFERAL_LINK_INCORRECT: "Refferal Link Invalid",
     PASSWORD_INCORRECT: "Password must be eight characters long and contain at least one lowercase letter, one uppercase letter, one number, and one special character",
     PASSWORD_CONFIRM_INCORRECT: "Password and confirm password does not match",
@@ -17,7 +18,8 @@ export const tranErrors = {
     AVATAR_TYPE: "File Invalid, require PNG/JPG/JPEG",
     AVATAR_SIZE: "File too large, Require maximum 1 MB",
     ACCOUNT_NOT_EXIST: "Account does not exist",
-    CHECK_CURRENT_PASS_FAILED: "Mật khẩu hiện tại không chính xác"
+    CHECK_CURRENT_PASS_FAILED: "Current password Incorrect",
+    WALLET_ALREADY_UPDATED: "Your ERC20 Wallet Updated, can't update again"
 };
 
 export const tranSuccess = {
@@ -30,7 +32,8 @@ export const tranSuccess = {
     },
     LOGOUT_SUCCESS: "log Out Success",
     INFO_UPDATE_SUCCESS: "Update Info Success",
-    PASS_UPDATE_SUCCESS: "Update Password Success"
+    PASS_UPDATE_SUCCESS: "Update Password Success",
+    WALLET_UPDATE_SUCCESS: "Update Wallet Success"
 }; 
 
 export const tranMail = {
