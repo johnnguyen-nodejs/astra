@@ -9,9 +9,7 @@ let UserSchema = new Schema({
         type: String,
         default: null
     },
-<<<<<<< HEAD
     parent: String ,
-=======
     status: {
         type: String,
         default: "invester"
@@ -33,7 +31,6 @@ let UserSchema = new Schema({
         type: String, 
         default: '0x0'
     },
->>>>>>> 72cb4c9668d08f524ec7f1241c39ae839e102db3
     avatar: {
         type: String,
         default: "default.png"

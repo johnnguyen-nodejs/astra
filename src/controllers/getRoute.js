@@ -121,10 +121,7 @@ module.exports = {
     getContact: getContact,
     getNotFound,
     getDashboard: getDashboard,
-<<<<<<< HEAD
-=======
     getAdmin: getAdmin,
->>>>>>> 72cb4c9668d08f524ec7f1241c39ae839e102db3
     getRegister: getRegister,
     getLogin: getLogin,
     postRegister: register,

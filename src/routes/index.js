@@ -5,10 +5,7 @@ import {
     getContact, 
     getNotFound,
     getDashboard, 
-<<<<<<< HEAD
-=======
     getAdmin, 
->>>>>>> 72cb4c9668d08f524ec7f1241c39ae839e102db3
     getRegister,
     getLogin,
     postRegister,
@@ -43,10 +40,7 @@ let initRouter = (app)=>{
     router.get('/contact', getContact );
     router.get('/404', getNotFound );
     router.get('/dashboard', checkLogedIn, getDashboard );
-<<<<<<< HEAD
-=======
     router.get('/admin', checkLogedIn, getAdmin );
->>>>>>> 72cb4c9668d08f524ec7f1241c39ae839e102db3
     router.get('/register', checkLogedOut, getRegister );
     router.get('/login', checkLogedOut, getLogin );
     router.get('/verify/:token', checkLogedOut, verifyAccount );
