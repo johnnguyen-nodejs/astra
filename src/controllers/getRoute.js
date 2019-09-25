@@ -79,10 +79,6 @@ let getAdmin = (req, res)=>{
     };
 
 let getRegister = (req, res)=>{
-<<<<<<< HEAD
-        console.log(req.query.refferer);
-=======
->>>>>>> 72cb4c9668d08f524ec7f1241c39ae839e102db3
         res.render("authentication/register", {
             title: "Register",
             errors: req.flash("errors"),
