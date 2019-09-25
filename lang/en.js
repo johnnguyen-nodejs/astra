@@ -1,9 +1,6 @@
 export const tranValidation ={
     EMAIL_INCORRECT: "Email Invalid",
-<<<<<<< HEAD
-=======
     WALLET_INCORRECT: "ERC20 WALLET ADDRESS Invalid",
->>>>>>> 72cb4c9668d08f524ec7f1241c39ae839e102db3
     REFFERAL_LINK_INCORRECT: "Refferal Link Invalid",
     PASSWORD_INCORRECT: "Password must be eight characters long and contain at least one lowercase letter, one uppercase letter, one number, and one special character",
     PASSWORD_CONFIRM_INCORRECT: "Password and confirm password does not match",
