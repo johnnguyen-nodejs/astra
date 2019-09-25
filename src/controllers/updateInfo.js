@@ -43,7 +43,10 @@ let updateAvatar = (req, res)=> {
             //update user avatar
             let userUpdate = await user.updateUser(req.user._id, updateUserItem);
             //remove old avatar
-            await fsExtra.remove(`${appConfig.avatar_dir}/${userUpdate.avatar}`);
+            if(userUpdate.avatar !== "default.jpg"){
+                await fsExtra.remove(`${appConfig.avatar_dir}/${userUpdate.avatar}`);
+            }
+            
             let result = {
                 message: tranSuccess.INFO_UPDATE_SUCCESS,
                 imageSrc: `images/avatars/${req.file.filename}`
@@ -101,9 +104,31 @@ let updatePassword = async (req, res)=> {
         return res.status(500).send(error);
     }
 };
+let updateWallet = async (req, res)=> {
+    let errArr = [];
+    let validationErrors = validationResult(req);
+    if(!validationErrors.isEmpty()){
+        let errors = Object.values(validationErrors.mapped());
+        errors.forEach(item =>{
+            errArr.push(item.msg);
+        });
+        return res.status(500).send(errArr);  
+    };
+    try {
+        let updateUserItem = req.body;
+        await user.updateWallet(req.user._id, updateUserItem);
+        let result = {
+            message: tranSuccess.WALLET_UPDATE_SUCCESS
+        };
+        return res.status(200).send(result);
+    } catch (error) {
+        return res.status(500).send(error);
+    }
+};
 
 module.exports = {
     updateAvatar: updateAvatar,
     updateInfo: updateInfo,
-    updatePassword: updatePassword
+    updatePassword: updatePassword,
+    updateWallet: updateWallet
 };

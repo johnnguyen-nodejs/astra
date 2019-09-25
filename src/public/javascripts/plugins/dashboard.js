@@ -1,5 +1,5 @@
 
-(function() {
+(function () {
   isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
 
   if (isWindows) {
@@ -32,7 +32,7 @@ var seq2 = 0,
   delays2 = 80,
   durations2 = 500;
 
-$(document).ready(function() {
+$(document).ready(function () {
 
   $('body').bootstrapMaterialDesign();
 
@@ -53,14 +53,14 @@ $(document).ready(function() {
   //  Activate the tooltips
   $('[rel="tooltip"]').tooltip();
 
-  $('.form-control').on("focus", function() {
+  $('.form-control').on("focus", function () {
     $(this).parent('.input-group').addClass("input-group-focus");
-  }).on("blur", function() {
+  }).on("blur", function () {
     $(this).parent(".input-group").removeClass("input-group-focus");
   });
 
   // remove class has-error for checkbox validation
-  $('input[type="checkbox"][required="true"], input[type="radio"][required="true"]').on('click', function() {
+  $('input[type="checkbox"][required="true"], input[type="radio"][required="true"]').on('click', function () {
     if ($(this).hasClass('error')) {
       $(this).closest('div').removeClass('has-error');
     }
@@ -68,20 +68,20 @@ $(document).ready(function() {
 
 });
 
-$(document).on('click', '.navbar-toggler', function() {
+$(document).on('click', '.navbar-toggler', function () {
   $toggle = $(this);
 
   if (mobile_menu_visible == 1) {
     $('html').removeClass('nav-open');
 
     $('.close-layer').remove();
-    setTimeout(function() {
+    setTimeout(function () {
       $toggle.removeClass('toggled');
     }, 400);
 
     mobile_menu_visible = 0;
   } else {
-    setTimeout(function() {
+    setTimeout(function () {
       $toggle.addClass('toggled');
     }, 430);
 
@@ -94,17 +94,17 @@ $(document).on('click', '.navbar-toggler', function() {
       $layer.appendTo(".wrapper-full-page");
     }
 
-    setTimeout(function() {
+    setTimeout(function () {
       $layer.addClass('visible');
     }, 100);
 
-    $layer.click(function() {
+    $layer.click(function () {
       $('html').removeClass('nav-open');
       mobile_menu_visible = 0;
 
       $layer.removeClass('visible');
 
-      setTimeout(function() {
+      setTimeout(function () {
         $layer.remove();
         $toggle.removeClass('toggled');
 
@@ -119,13 +119,13 @@ $(document).on('click', '.navbar-toggler', function() {
 });
 
 // activate collapse right menu when the windows is resized
-$(window).resize(function() {
+$(window).resize(function () {
   md.initSidebarsCheck();
 
   // reset the seq for charts drawing animations
   seq = seq2 = 0;
 
-  setTimeout(function() {
+  setTimeout(function () {
     md.initDashboardPageCharts();
   }, 500);
 });
@@ -139,7 +139,7 @@ md = {
     disabled_collapse_init: 0
   },
 
-  checkSidebarImage: function() {
+  checkSidebarImage: function () {
     $sidebar = $('.sidebar');
     image_src = $sidebar.data('image');
 
@@ -149,7 +149,7 @@ md = {
     }
   },
 
-  initSidebarsCheck: function() {
+  initSidebarsCheck: function () {
     if ($(window).width() <= 991) {
       if ($sidebar.length != 0) {
         md.initRightMenu();
@@ -157,7 +157,7 @@ md = {
     }
   },
 
-  initDashboardPageCharts: function() {
+  initDashboardPageCharts: function () {
 
     if ($('#dailySalesChart').length != 0 || $('#completedTasksChart').length != 0 || $('#websiteViewsChart').length != 0) {
       /* ----------==========     Daily Sales Chart initialization    ==========---------- */
@@ -243,7 +243,7 @@ md = {
         ['screen and (max-width: 640px)', {
           seriesBarDistance: 5,
           axisX: {
-            labelInterpolationFnc: function(value) {
+            labelInterpolationFnc: function (value) {
               return value[0];
             }
           }
@@ -256,7 +256,7 @@ md = {
     }
   },
 
-  showNotification: function(from, align) {
+  showNotification: function (from, align) {
     type = ['', 'info', 'danger', 'success', 'warning', 'primary'];
 
     color = Math.floor((Math.random() * 5) + 1);
@@ -275,7 +275,7 @@ md = {
     });
   },
 
-  checkScrollForTransparentNavbar: debounce(function() {
+  checkScrollForTransparentNavbar: debounce(function () {
     if ($(document).scrollTop() > 260) {
       if (transparent) {
         transparent = false;
@@ -289,7 +289,7 @@ md = {
     }
   }, 17),
 
-  initRightMenu: debounce(function() {
+  initRightMenu: debounce(function () {
 
     $sidebar_wrapper = $('.sidebar-wrapper');
 
@@ -312,7 +312,7 @@ md = {
       $nav_content.insertBefore($sidebar_nav);
       $navbar_form.insertBefore($nav_content);
 
-      $(".sidebar-wrapper .dropdown .dropdown-menu > li > a").click(function(event) {
+      $(".sidebar-wrapper .dropdown .dropdown-menu > li > a").click(function (event) {
         event.stopPropagation();
 
       });
@@ -332,8 +332,8 @@ md = {
     }
   }, 200),
 
-  startAnimationForLineChart: function(chart) {
-    chart.on('draw', function(data) {
+  startAnimationForLineChart: function (chart) {
+    chart.on('draw', function (data) {
       if ((data.type === 'line' || data.type === 'area') && window.matchMedia("(min-width: 900px)").matches) {
         data.element.animate({
           d: {
@@ -362,8 +362,8 @@ md = {
     seq = 0;
 
   },
-  startAnimationForBarChart: function(chart) {
-    chart.on('draw', function(data) {
+  startAnimationForBarChart: function (chart) {
+    chart.on('draw', function (data) {
       if (data.type === 'bar' && window.matchMedia("(min-width: 900px)").matches) {
         seq2++;
         data.element.animate({
@@ -391,47 +391,50 @@ md = {
 
 function debounce(func, wait, immediate) {
   var timeout;
-  return function() {
+  return function () {
     var context = this,
       args = arguments;
     clearTimeout(timeout);
-    timeout = setTimeout(function() {
+    timeout = setTimeout(function () {
       timeout = null;
       if (!immediate) func.apply(context, args);
     }, wait);
     if (immediate && !timeout) func.apply(context, args);
   };
 };
-$(document).ready(function(){
-  function checkMenu(obj){
+$(document).ready(function () {
+  function checkMenu(obj) {
     $(".sidebar-wrapper ul.nav li.nav-item").removeClass("active");
     $(obj).addClass("active");
     var id = $(obj).find('a').attr("href");
-    
+
     $(".wrapper .main-panel .content").hide();
     $(id).show();
-    var name= id.split("-")[1].toUpperCase();
+    var name = id.split("-")[1].toUpperCase();
     $("a#name-select").text(name);
   };
-  $(".sidebar-wrapper ul.nav li.nav-item").bind("click", function(){
+  $(".sidebar-wrapper ul.nav li.nav-item").bind("click", function () {
     checkMenu(this);
     return false;
   });
   checkMenu($(".sidebar-wrapper ul.nav li.nav-item")[0]);
-  function checkSettingModal(obj){
+  function checkSettingModal(obj) {
     $(".modal-body ul.nav li").removeClass("active");
     $(obj).addClass("active");
     var id = $(obj).find('a').attr("href");
-    
+
     $(".modal-body .tab-content .tab-pane").hide();
     $(id).show();
   };
-  $(".modal-body ul.nav li").bind("click", function(){
+  $(".modal-body ul.nav li").bind("click", function () {
     checkSettingModal(this);
     return false;
   });
   checkSettingModal($(".modal-body ul.nav li")[0]);
 });
+
+  
+
 
 
 

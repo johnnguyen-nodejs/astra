@@ -25,6 +25,38 @@ body {
   color: #fff;
 }
 
+.form-group {
+    text-align: right;
+    margin-right: 12%;
+}
+
+input#btn-register-form {
+    margin: auto;
+    padding: 10px 30px;
+    margin-right: 35%;
+}
+
+input#email-register, input#password-register, input#re-password-register, input#refferal-register {
+    width: 69%;
+    background: white;
+    border: none;
+    padding: 5px;
+    margin: 10px;
+}
+
+.form-register-detail {
+    width: 50%;
+    padding: 20px;
+    background: #202940;
+    margin: auto;
+    margin-bottom: 40px;
+}
+
+h3.title-register-form {
+    padding: 20px;
+    color: #05054e;
+}
+
 .container {
   height: 100%;
 }

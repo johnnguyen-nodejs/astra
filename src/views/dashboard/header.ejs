@@ -12,6 +12,7 @@
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  
   <script type="text/javascript" src="javascripts/home/jquery-3.4.1.min.js"></script>
   <link rel="stylesheet" href="bower_components/AlertifyJS/build/css/alertify.css">
   
@@ -41,12 +42,9 @@
                 <a href="/dashboard"><li class="down-dashboar">Dashboard</li></a>
                 <a href="#user-profile-modal" data-toggle="modal"><li class="down-dashboar">Setting</li></a>
                 <a href="/logout"><li class="down-dashboar">logout</li></a>
-            </div>
-            
-            
+            </div>           
           </div>
-        </div>
-        
+        </div>       
     </div>
   </div>
   
@@ -67,7 +65,7 @@
           <li class="nav-item ">
             <a class="nav-link" href="#user-profile">
               <i class="material-icons">person</i>
-              <p>Profile</p>
+              <p>Agency Register</p>
             </a>
           </li>
           <li class="nav-item ">
@@ -120,17 +118,8 @@
               <ul class="navbar-nav">
                 <li class="nav-item">
                   <a class="nav-link" href="javascript:void(0)">
-                    <i class="material-icons">dashboard</i>
                     <p class="d-lg-none d-md-block">
-                      Stats
-                    </p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="javascript:void(0)">
-                    <i class="material-icons">person</i>
-                    <p class="d-lg-none d-md-block">
-                      Account
+                      <%= user.username %>
                     </p>
                   </a>
                 </li>
