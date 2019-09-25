@@ -9,7 +9,31 @@ let UserSchema = new Schema({
         type: String,
         default: null
     },
+<<<<<<< HEAD
     parent: String ,
+=======
+    status: {
+        type: String,
+        default: "invester"
+    },
+    parent: String ,
+    balance: {
+        type: Number, 
+        default: 0
+    },
+    revenue: {
+        type: Number, 
+        default: 0
+    },
+    invester: {
+        type: Number, 
+        default: 0
+    },
+    wallet:{
+        type: String, 
+        default: '0x0'
+    },
+>>>>>>> 72cb4c9668d08f524ec7f1241c39ae839e102db3
     avatar: {
         type: String,
         default: "default.png"
@@ -91,7 +115,38 @@ UserSchema.statics = {
     },   
     updatePassword  (id, hashedPassword){
         return this.findByIdAndUpdate(id, {"local.password": hashedPassword}).exec();
-    }   
+    },
+    updateWallet  (id, wallet){
+        return this.findByIdAndUpdate(id, {"wallet": wallet}).exec();
+    },
+    viewOne(refferer){
+        return this.find({"parent": refferer}, "username balance revenue invester phone address").exec();
+    },
+    findAll(){
+        return this.find({}).exec();
+    },
+    // get balance and tree system 
+    Deposit(wallet, amount){
+        this.findOneAndUpdate({wallet:wallet},{$inc:{balance: amount}},{new: true},(err,result)=>{
+          this.AddRevenue(result.parent,amount);
+        })
+    },
+
+    IncreaseInvester(parent){
+        if(parent !== ''){
+            this.findOneAndUpdate({refferer:parent},{$inc:{invester: 1}},{new: true},(err,user)=>{
+                this.IncreaseInvester(user.parent);
+            });
+        } 
+    },
+      
+    AddRevenue(parent,add){
+        if (parent != '') {
+          this.findOneAndUpdate({refferer: parent},{$inc:{revenue: add}},{new: true},(err,result)=>{
+            this.AddRevenue(result.parent,add);
+          })
+        }
+    },
 };
 
 UserSchema.methods = {

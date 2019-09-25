@@ -14,7 +14,11 @@ let register = async (req, res)=>{
         req.flash("errors", errArr)
         return res.redirect("/register");  
     };
+<<<<<<< HEAD
     if (!req.body.parent && !parent) {
+=======
+    if (!req.body.parent) {
+>>>>>>> 72cb4c9668d08f524ec7f1241c39ae839e102db3
         try {
             let userCreateSuccess = await auth.register(req.body.email, req.body.password, process.env.ADMIN_REF, req.protocol, req.get("host"));
             successArr.push(userCreateSuccess);
@@ -25,6 +29,7 @@ let register = async (req, res)=>{
             req.flash("errors", errArr);
             return res.redirect("/register");
         };
+<<<<<<< HEAD
     } else if(parent){
         try {
             let userCreateSuccess = await auth.register(req.body.email, req.body.password, req.query.refferer, req.protocol, req.get("host"));
@@ -36,6 +41,8 @@ let register = async (req, res)=>{
             req.flash("errors", errArr);
             return res.redirect("/register");
         };
+=======
+>>>>>>> 72cb4c9668d08f524ec7f1241c39ae839e102db3
     } else {
         try {
             let userCreateSuccess = await auth.register(req.body.email, req.body.password, req.body.parent, req.protocol, req.get("host"));

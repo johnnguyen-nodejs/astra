@@ -46,9 +46,9 @@
                   <div class="tab-content">
                       <div id="setting-profile" class="tab-pane fade in active">
                           <div class="row">
-                              <form class="form-horizontal" method="post" role="form" action="">
+                              <form class="form-horizontal" method="post" role="form" action="" class="display: flex!important;">
                                   <!-- left column -->
-                                  <div class="col-md-3">
+                                  <div class="col-md-4">
                                       <div class="text-center" id="div-update-avatar">
                                           <div id="image-edit-profile">
                                               <img src="images/avatars/<%= user.avatar %>" id="user-modal-avatar" class="avatar img-circle" alt="avatar">
@@ -57,9 +57,11 @@
                                           <input type="file" class="form-control" id="input-change-avatar" name="avatar"><br>
                                           <div id="show-button-update-avatar"></div>
                                       </div>
+                                      <input id="update-avatar-btn" type="button" class="btn btn-warning" value="Submit">
+                                      <input id="cancel-update-avatar" type="button" class="btn btn-danger" value="Cancel">
                                   </div>
                                   <!-- edit form column -->
-                                  <div class="col-md-9 personal-info">
+                                  <div class="col-md-8 personal-info">
                                       <div class="alert alert-danger alert-dismissable user-modal-alert-error">
                                           <span>Update user error example.</span>
                                       </div>
@@ -67,36 +69,14 @@
                                       <div class="alert alert-success alert-dismissable user-modal-alert-success">
                                           <span>Update user success example.</span>
                                       </div>
-                                      <% if(user.local.email){ %>
-                                      <h3>Local account.</h3>
+                                      <h3>Your Information</h3>
                                       <br>
                                       <div class="form-group">
-                                          <label class="col-lg-3 control-label">Email:</label>
-                                          <div class="col-lg-8">
-                                              <div class="form-control" disabled><%= user.local.email %></div>
+                                          <label class="col-md-3 control-label">Email:</label>
+                                          <div class="col-md-8">
+                                              <input id="input-change-email" class="form-control" type="text" name="username" value="<%= user.local.email %>" disabled>
                                           </div>
                                       </div>
-                                      <% }; %>
-                                      <% if(user.facebook.email){ %>
-                                      <h3>Facebook account</h3>
-                                      <br>
-                                      <div class="form-group">
-                                          <label class="col-lg-3 control-label">Email:</label>
-                                          <div class="col-lg-8">
-                                              <div class="form-control" disabled><%= user.local.email %></div>
-                                          </div>
-                                      </div>
-                                      <% }; %>
-                                      <% if(user.google.email){ %>
-                                      <h3>Google account.</h3>
-                                      <br>
-                                      <div class="form-group">
-                                          <label class="col-lg-3 control-label">Email:</label>
-                                          <div class="col-lg-8">
-                                              <div class="form-control" disabled><%= user.local.email %></div>
-                                          </div>
-                                      </div>
-                                      <% }; %>
                                       <div class="form-group">
                                           <label class="col-md-3 control-label">Username:</label>
                                           <div class="col-md-8">
@@ -118,9 +98,9 @@
                                       <div class="form-group">
                                           <label class="col-md-3 control-label"></label>
                                           <div class="col-md-8">
-                                              <input type="button" id="btn-update-user-modal" class="btn btn-primary custom-background-btn-primary" name="submit" value="Save">
+                                              <input type="button" id="btn-update-user-modal" class="btn btn-warning" value="Save">
                                               <span></span>
-                                              <input type="button" id="btn-cancel-user-modal" class="btn btn-default custom-background-btn-reset" value="Cancel">
+                                              <input type="button" id="btn-cancel-user-modal" class="btn btn-danger" value="Cancel">
                                           </div>
                                       </div>
                                   </div>
@@ -140,7 +120,7 @@
                               <br>
                               <h3>Update Password</h3>
                               <br>
-                              <form class="form-horizontal" method="post" role="form" action="">
+                              <form class="form-horizontal" style="display:block!important;" method="post" role="form" action="">
                                   <div class="form-group">
                                       <label class="col-md-4 control-label">Password</label>
                                       <div class="col-md-8">
@@ -189,6 +169,7 @@
   <script src="javascripts/plugins/bootstrap-material-design.min.js"></script>
   <script src="https://unpkg.com/default-passive-events"></script>
   <script src="javascripts/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <script src="javascripts/plugins/clipboard.min.js"></script>
   <script src="bower_components/sweetalert2/dist/sweetalert2.all.min.js"></script>
   <script src="bower_components/AlertifyJS/build/alertify.js"></script>
   
@@ -200,15 +181,26 @@
   <script src="javascripts/plugins/dashboard.js"></script>
   <script src="javascripts/UpdateUser.js"></script>
   <script src="javascripts/main.js"></script>
-  
-  
-  
+    <script>
+          new ClipboardJS('#copyContent');
+          new ClipboardJS('#copyAddress');
+          new ClipboardJS('#copyRefLink');
+        $("#copyContent").click(()=> {
+            alertify.notify("Copy Success","success", 5);
+        });
+        $("#copyAddress").click(()=> {
+            alertify.notify("Copy Success","success", 5);
+        });
+        $("#copyRefLink").click(()=> {
+            alertify.notify("Copy Success","success", 5);
+        });
+  </script>
   <script>
     $(document).ready(function() {
       // Javascript method's body can be found in assets/js/demos.js
       md.initDashboardPageCharts();
-    });
-  </script>
+    })
+</script>
 </body>
 
 </html>
