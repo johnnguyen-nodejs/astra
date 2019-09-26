@@ -9,7 +9,6 @@ let UserSchema = new Schema({
         type: String,
         default: null
     },
-    parent: String ,
     status: {
         type: String,
         default: "invester"
