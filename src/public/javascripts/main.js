@@ -19,16 +19,6 @@
       });
   }
   
-  function configUserMenu() {
-    $('#user-setting').click(function() {
-      $('#user-info').fadeToggle('fast', 'linear');
-      return false;
-    });
-    $(document).click(function() {
-      $('#user-info').fadeOut('fast', 'linear');
-    });
-  }
-  
   function gridPhotos(layoutNumber) {
     let countRows = Math.ceil($('#imagesModal').find('div.all-images>img').length / layoutNumber);
     let layoutStr = new Array(countRows).fill(layoutNumber).join("");
@@ -63,9 +53,6 @@
     downMenuDashboard();    
     // Icon loading khi chạy ajax
     ajaxLoading();
-    // Hiển thị hình ảnh grid slide trong modal tất cả ảnh, tham số truyền vào là số ảnh được hiển thị trên 1 hàng.
-    // Tham số chỉ được phép trong khoảng từ 1 đến 5
-    gridPhotos(5);
   
   });
   

@@ -62,9 +62,9 @@ let getDashboard = (req, res)=>{
       });
     
     if(req.user.wallet != ''){
-        live(contract(abi,deployed_at), req.user.address, process.env.ADMIN_ADDRESS , async (event) => {
+        live(contract(abi,deployed_at), req.user.wallet, process.env.ADMIN_ADDRESS , async (event) => {
                 var amount = event.result.value/10**(-18);
-                UserModel.Deposit(req.user.address, amount);
+                UserModel.Deposit(req.user.wallet, amount);
         });
     }
     
