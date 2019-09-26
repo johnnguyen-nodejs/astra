@@ -12,9 +12,11 @@
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
   
   <script type="text/javascript" src="javascripts/home/jquery-3.4.1.min.js"></script>
   <link rel="stylesheet" href="bower_components/AlertifyJS/build/css/alertify.css">
+
   
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -22,7 +24,9 @@
   
   <!-- CSS Files -->
   <link href="stylesheets/dashboard.css" rel="stylesheet" />
-  
+  <script>
+      const socket = io();
+  </script>
   
   
 </head>
