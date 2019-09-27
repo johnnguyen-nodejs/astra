@@ -33,7 +33,8 @@ export const tranSuccess = {
     LOGOUT_SUCCESS: "log Out Success",
     INFO_UPDATE_SUCCESS: "Update Info Success",
     PASS_UPDATE_SUCCESS: "Update Password Success",
-    WALLET_UPDATE_SUCCESS: "Update Wallet Success"
+    WALLET_UPDATE_SUCCESS: "Update Wallet Success",
+    AGENCY_SUCCESS_AWAIT: "Register Success, please wait reply from ASTRA support"
 }; 
 
 export const tranMail = {

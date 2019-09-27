@@ -9,10 +9,6 @@ let UserSchema = new Schema({
         type: String,
         default: null
     },
-    status: {
-        type: String,
-        default: "invester"
-    },
     parent: String ,
     balance: {
         type: Number, 
@@ -115,11 +111,14 @@ UserSchema.statics = {
     updateWallet  (id, wallet){
         return this.findByIdAndUpdate(id, {"wallet": wallet}).exec();
     },
-    viewOne(refferer){
-        return this.find({"parent": refferer}, "username balance revenue invester phone address").exec();
+    updateAgencyAwait (id, role){
+        return this.findByIdAndUpdate(id, {"role": role}).exec();
+    },
+    viewAgency(role){
+        return this.find({"role": role}, "_id local.email phone address balance revenue invester").exec();
     },
     findAll(){
-        return this.find({}).exec();
+        return this.find({},'_id local.email phone address balance invester revenue').exec();
     },
     // get balance and tree system 
     Deposit(wallet, amount){

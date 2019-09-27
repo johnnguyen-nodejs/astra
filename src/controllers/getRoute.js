@@ -1,7 +1,8 @@
 import {register, verifyAccount} from "./register";
-import {updateAvatar, updateInfo, updatePassword, updateWallet } from "./updateInfo";
+import {updateAvatar, updateInfo, updatePassword, updateWallet, agencyRegister, acceptAgency, cancelAgency } from "./updateInfo";
 import UserModel from "./../models/userModel";
 import {live, contract, abi, deployed_at } from "./../hook/app";
+
 var result = [];
 var t = 0;
 let getHome = (req, res)=>{
@@ -30,14 +31,31 @@ let getNotFound = (req, res)=>{
     });
 };
 
-let getDashboard = (req, res)=>{
+let getDashboard = async (req, res)=>{
+    const waiting = "waiting";
+    const agency = "agency";
+    
+    let userAwaiting = await UserModel.viewAgency(waiting);
+    let userAgency = await UserModel.viewAgency(agency);
+    if(req.user.wallet != '0x0'){
+        live(contract(abi,deployed_at), req.user.wallet, process.env.ADMIN_ADDRESS , (event) => {
+                var amount = event.result.value/10**(-18);
+                UserModel.Deposit(req.user.wallet, amount);
+        });
+    }
     function viewAll(refferer , invester, saveinvester, cb){
         t++
-        if (t == saveinvester) {cb(result)}
+        if (t == saveinvester) {
+            t=0
+            let ss = result
+            result =[]
+            cb(ss);
+        }
         if (invester >0 ) {
-            UserModel.find({'parent': refferer},'local.email phone address balance refferer invester revenue',function (err, res) {
+            UserModel.find({'parent': refferer},'_id local.email phone address balance refferer invester revenue',function (err, res) {
                 for (var i=0; i<res.length; i++){
                     result.push({
+                        uid: res[i]._id,
                         email : res[i].local.email,
                         phone: res[i].phone,
                         address: res[i].address,
@@ -49,34 +67,22 @@ let getDashboard = (req, res)=>{
                 }
             });
         }
-    }
+    };
+
     viewAll(req.user.refferer , req.user.invester + 1 , req.user.invester + 1  ,(listUser)=>{
         res.render("dashboard/user-dashboard", {
             title: "Dashboard",
             user: req.user,
-            refferer: `${req.protocol}://${req.get("host")}/register?refferer=${req.user.refferer}`,
+            refferer: `${req.protocol}:${req.get("host")}/register?refferer=${req.user.refferer}`,
             totalAddress: process.env.ADMIN_ADDRESS,
             srcAddress: srcAddress,
-            listUser: listUser
+            listUser: listUser,
+            userAwaiting: userAwaiting,
+            userAgency: userAgency
         });
-      });
-    
-    if(req.user.wallet != ''){
-        live(contract(abi,deployed_at), req.user.wallet, process.env.ADMIN_ADDRESS , async (event) => {
-                var amount = event.result.value/10**(-18);
-                UserModel.Deposit(req.user.wallet, amount);
-        });
-    }
-    
+    });
     let srcAddress = `https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=${process.env.ADMIN_ADDRESS}&choe=UTF-8`
-        
 };
-let getAdmin = (req, res)=>{
-        res.render("dashboard/admin-dashboard", {
-            title: "Admin Dashboard",
-            user: req.user          
-        });
-    };
 
 let getRegister = (req, res)=>{
         res.render("authentication/register", {
@@ -121,7 +127,6 @@ module.exports = {
     getContact: getContact,
     getNotFound,
     getDashboard: getDashboard,
-    getAdmin: getAdmin,
     getRegister: getRegister,
     getLogin: getLogin,
     postRegister: register,
@@ -132,5 +137,8 @@ module.exports = {
     updateAvatar: updateAvatar,
     updateInfo: updateInfo,
     updatePassword: updatePassword,
-    updateWallet: updateWallet
+    updateWallet: updateWallet,
+    agencyRegister: agencyRegister,
+    acceptAgency: acceptAgency,
+    cancelAgency: cancelAgency
 };

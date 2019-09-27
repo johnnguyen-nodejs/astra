@@ -4,6 +4,7 @@ let newInvester = (io) => {
             console.log(data);
             console.log(socket.request.user)
         });
+        
     });
 }
 

@@ -20854,7 +20854,7 @@ Copyright (c) 2015 Daniel Eden
 }
 
 .dark-edition .form-control {
-  color: #fff;
+  color: #2a9410;
 }
 
 .dark-edition .form-control::-moz-placeholder {
@@ -22138,7 +22138,9 @@ a.top-menu-logo {
 .user-modal-password-alert-error, 
 .user-modal-password-alert-success, 
 .user-update-wallet-alert-success, 
-.user-update-wallet-alert-error {
+.user-update-wallet-alert-error,
+.agency-register-alert-error,
+.agency-register-alert-success {
     display: none;
 }
 

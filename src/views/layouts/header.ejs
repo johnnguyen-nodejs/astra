@@ -8,6 +8,7 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <script type="text/javascript" src="javascripts/home/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="javascripts/home/slick.min.js"></script>
     <link rel="stylesheet" href="stylesheets/home/bootstrap.min.css">
     <!-- <link rel="stylesheet" href="stylesheets/home/bootstrap-res.css"> -->
     <link href="https://web.tttt.vn/upload/e462e8f2-1b9a-11e9-a731-b51e02432c4b/2019/07/1564479235_icon_q.png"
@@ -75,12 +76,16 @@
                                                             <% if(!user) { %>
                                                             <li class="button"><a href="/auth">SignIn/SignUp</a></li>
                                                             <% } else { %>
-                                                            <li><img id="logo-left-top"
+                                                            <li id="user-top-homepage"><img id="logo-left-top"
                                                                     src="images/avatars/<%= user.avatar %>"
                                                                     alt="avatar"> <%= user.username %></li>
+                                                            <ul class="menu-down-home">
+                                                                <a href="/dashboard"><li class="set-down-path">Dashboard</li></a>
+                                                                <a href="/logout"><li class="set-down-path">Logout</li></a>
+                                                            </ul>
                                                             <% }; %>
-                                                            <li class="menu_mobile icon"><span
-                                                                    class="icon-th-menu"></span>
+                                                            <li class="menu_mobile icon">
+                                                                <i class="fa fa-bars"></i>                                                
                                                             </li>
                                                         </ul>
                                                     </div>

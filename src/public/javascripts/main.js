@@ -19,25 +19,13 @@
       });
   }
   
-  function gridPhotos(layoutNumber) {
-    let countRows = Math.ceil($('#imagesModal').find('div.all-images>img').length / layoutNumber);
-    let layoutStr = new Array(countRows).fill(layoutNumber).join("");
-    $('#imagesModal').find('div.all-images').photosetGrid({
-      highresLinks: true,
-      rel: 'withhearts-gallery',
-      gutter: '2px',
-      layout: layoutStr,
-      onComplete: function() {
-        $('.all-images').css({
-          'visibility': 'visible'
-        });
-        $('.all-images a').colorbox({
-          photo: true,
-          scalePhotos: true,
-          maxHeight: '90%',
-          maxWidth: '90%'
-        });
-      }
+  function configUserMenu() {
+    $('#user-setting').click(function() {
+      $('#user-info').fadeToggle('fast', 'linear');
+      return false;
+    });
+    $(document).click(function() {
+      $('#user-info').fadeOut('fast', 'linear');
     });
   }
 

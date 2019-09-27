@@ -43,6 +43,9 @@
               <img id="avatar-top-right" src="images/avatars/<%= user.avatar%>"><%= user.username %>
             </a>
             <div class="click-menu-down">
+                <a href="/"><li class="down-dashboar">Home</li></a>
+                <a href="/team"><li class="down-dashboar">Team</li></a>
+                <a href="https://drive.google.com/drive/folders/1LAjlNmIw1Er87i924cNWf2HI5k7GA8O3?usp=sharing" target="_blank"><li class="down-dashboar">WhitePaper</li></a>
                 <a href="/dashboard"><li class="down-dashboar">Dashboard</li></a>
                 <a href="#user-profile-modal" data-toggle="modal"><li class="down-dashboar">Setting</li></a>
                 <a href="/logout"><li class="down-dashboar">logout</li></a>
@@ -66,22 +69,25 @@
               <p>Dashboard</p>
             </a>
           </li>
+          <% if( user.role === 'admin') { %>
           <li class="nav-item ">
-            <a class="nav-link" href="#user-profile">
+            <a class="nav-link" href="#user-agency">
+              <i class="material-icons">person</i>
+              <p>Agency Request</p>
+            </a>
+          </li>
+          <% } else { %>
+          <li class="nav-item ">
+            <a class="nav-link" href="#user-agency">
               <i class="material-icons">person</i>
               <p>Agency Register</p>
             </a>
           </li>
+          <% } %>
           <li class="nav-item ">
             <a class="nav-link" href="#user-invest">
               <i class="fa fa-money"></i>
               <p>Invest ASTRA</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="#user-wallet">
-              <i class="fa fa-google-wallet" aria-hidden="true"></i>
-              <p>Wallet</p>
             </a>
           </li>
           <li class="nav-item ">
