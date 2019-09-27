@@ -7,7 +7,6 @@ import bodyParser from "body-parser";
 import connectFlash from "connect-flash";
 import { configSession, sessionStore } from "./config/session";
 import passport from "passport";
-import live from "./hook/app";
 import http from "http";
 import socketio from "socket.io";
 import initSockets from "./sockets/index";
@@ -88,8 +87,10 @@ io.use(passportSocketIo.authorize({
         }
     }
 }));
+
 //config socket;
 initSockets(io);
+
 
 server.listen(process.env.APP_PORT, process.env.APP_HOST, ()=>{
     console.log(` listening on port: ${process.env.APP_PORT}`);

@@ -5,6 +5,8 @@ import UserModel from "./../../models/userModel";
 import { tranErrors } from "../../../lang/en";
 import Geetest from "gt3-sdk";
 
+
+
 let LocalStrategy = passportLocal.Strategy;
 
 /**
@@ -65,6 +67,7 @@ let initPassportLocal = () =>{
             if(!checkPassword){
                 return done(null, false, req.flash("errors", tranErrors.LOGIN_FAILED));
             }
+            
             done(null, user);
         } catch (error) {
             console.log(error);

@@ -43,7 +43,7 @@ let updateAvatar = (req, res)=> {
             //update user avatar
             let userUpdate = await user.updateUser(req.user._id, updateUserItem);
             //remove old avatar
-            if(userUpdate.avatar !== "default.jpg"){
+            if(userUpdate.avatar !== "default.png"){
                 await fsExtra.remove(`${appConfig.avatar_dir}/${userUpdate.avatar}`);
             }
             
@@ -125,10 +125,59 @@ let updateWallet = async (req, res)=> {
         return res.status(500).send(error);
     }
 };
+let agencyRegister = async (req, res)=> {
+    const awaiting = "awaiting";
+    let errArr = [];
+    let validationErrors = validationResult(req);
+    if(!validationErrors.isEmpty()){
+        let errors = Object.values(validationErrors.mapped());
+        errors.forEach(item =>{
+            errArr.push(item.msg);
+        });
+        return res.status(500).send(errArr);  
+    };
+    try {
+        await user.agencyRegister(req.user._id, awaiting);
+        let result = {
+            message: tranSuccess.AGENCY_SUCCESS_AWAIT
+        };
+        return res.status(200).send(result);
+    } catch (error) {
+        return res.status(500).send(error);
+    }
+};
+let acceptAgency = async (req, res)=> {
+    const agency = "agency";
+    try {
+        await user.updateAgency(req.body.uid, agency);
+        let result = {
+            message: tranSuccess.AGENCY_SUCCESS_AWAIT
+        };
+        return res.status(200).send(result);
+    } catch (error) {
+        return res.status(500).send(error);
+    }
+};
+let cancelAgency = async (req, res)=> {
+    const userAgent = "user";
+    try {
+        await user.updateAgency(req.body.uid, userAgent);
+        let result = {
+            message: tranSuccess.AGENCY_SUCCESS_AWAIT
+        };
+        return res.status(200).send(result);
+    } catch (error) {
+        return res.status(500).send(error);
+    }
+};
+
 
 module.exports = {
     updateAvatar: updateAvatar,
     updateInfo: updateInfo,
     updatePassword: updatePassword,
-    updateWallet: updateWallet
+    updateWallet: updateWallet,
+    agencyRegister: agencyRegister,
+    acceptAgency: acceptAgency,
+    cancelAgency: cancelAgency
 };

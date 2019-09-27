@@ -3,6 +3,20 @@
   margin: 0;
   padding: 0;
 }
+ul.menu-down-home.active {
+  display: block;
+}
+
+ul.menu-down-home {
+    position: absolute;
+    right: 30px;
+    top: 60px;
+    width: 160px;
+    background: #0f132d;
+    text-align: left;
+    display: none;
+    z-index: 1000;
+}
 
 .justify-content-center .row {
   justify-content: center;
@@ -206,6 +220,16 @@
   font-weight: bold;
   font-size: 16px;
   line-height: 19px;
+  transition: 0.4s;
+}
+
+li.set-down-path:hover {
+    color: yellow;
+}
+
+li.set-down-path {
+    width: 150px;
+    padding: 10px;
 }
 
 img#logo-left-top {
@@ -696,6 +720,22 @@ img#logo-left-top {
   .main_menu {
     text-align: center;
   }
+
+li.set-down-path {
+    padding: 5px;
+}
+
+ul.menu-down-home {
+    display: block;
+    position: relative;
+    top: 0;
+    left: -8px;
+    background: transparent;
+}
+
+li#user-top-homepage {
+    display: none;
+}
   .main_menu .menu_mobile {
     display: none;
   }
@@ -708,7 +748,7 @@ img#logo-left-top {
   }
   .bg_opacity:before {
     content: "";
-    background: #2c2c2c;
+    background: #202940;
     position: absolute;
     width: 100%;
     left: 0;
@@ -988,6 +1028,10 @@ img#logo-left-top {
     line-height: 30px;
     cursor: pointer;
   }
+
+i.fa.fa-bars {
+    margin-left: 15px;
+}
   .astra_menu.active li.button {
     width: 150px;
     float: left;

@@ -106,7 +106,7 @@
 </div>
 </div>
 
-<script type="text/javascript" src="javascripts/home/slick.min.js"></script>
+
 <script type="text/javascript" src="javascripts/home/scrollreveal.min.js"></script>
 <script type="text/javascript" src="javascripts/home/vendors.view.min.js"></script>
 <script src="bower_components/photoset-grid/jquery.photoset-grid.min.js"></script>
@@ -350,6 +350,13 @@
                     adaptiveHeight: true
                 }
             }]
+        });
+    });
+</script>
+<script>
+    $(document).ready(function(){
+        $("#user-top-homepage").bind("click", function(){
+            $("ul.menu-down-home").toggleClass("active");
         });
     });
 </script>

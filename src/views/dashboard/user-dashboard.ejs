@@ -90,7 +90,75 @@
     </div>
   </div>
 </div>
-<div class="content" id="user-profile">
+<% if(user.role === 'admin'){ %>
+<div class="content" id="user-agency">
+  <div class="container-fluid">
+    <div class=" card card-plain">
+      <div class="card-header card-header-primary">
+        <h4 class="card-title">Agency Requested Lists</h4>
+      </div>
+      <div class="card-body table-responsive">
+        <table class="table table-hover">
+          <thead class="text-warning">
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Balance</th>
+            <th>Revenue</th>
+            <th>Investers</th>
+            <th>Action</th>
+          </thead>
+          <tbody>
+            <% userAwaiting.forEach(function (userAwaiting){ %>
+            <tr id="network-user-info" data-awaitId="<%= userAwaiting._id %>">
+              <td><%= userAwaiting.local.email %></td>
+              <td><%= userAwaiting.phone %></td>
+              <td><%= userAwaiting.address %></td>
+              <td><%= userAwaiting.balance %></td>
+              <td><%= userAwaiting.revenue %></td>
+              <td><%= userAwaiting.invester %></td>
+              <td><input id="accept-agency-req" type="button" class="btn btn-warning" value="Accept" data-uid="<%= userAwaiting._id %>">&nbsp;<input id="cancel-agency-req" type="button" class="btn btn-danger" value="Cancel" data-uid="<%= userAwaiting._id %>"></td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class=" card card-plain">
+      <div class="card-header card-header-primary">
+        <h4 class="card-title">Agency</h4>
+      </div>
+      <div class="card-body table-responsive">
+        <table class="table table-hover">
+          <thead class="text-warning">
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Balance</th>
+            <th>Revenue</th>
+            <th>Investers</th>
+            <th>Action</th>
+          </thead>
+          <tbody>
+            <% userAgency.forEach(function (userAgency){ %>
+            <tr id="network-user-info" data-agencyId="<%= userAgency._id %>">
+              <td><%= userAgency.local.email %></td>
+              <td><%= userAgency.phone %></td>
+              <td><%= userAgency.address %></td>
+              <td><%= userAgency.balance %></td>
+              <td><%= userAgency.revenue %></td>
+              <td><%= userAgency.invester %></td>
+              <td><input id="delete-agency-role" type="button" class="btn btn-danger" value="Delete" data-uid="<%= userAgency._id %>"></td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<% } else { %>
+<div class="content" id="user-agency">
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-8">
@@ -99,35 +167,26 @@
             <h4 class="card-title">Agency Register Form</h4>
             <p class="card-category">Complete your profile to be a Agency</p>
           </div>
+          <br>
+          <div class="alert alert-danger alert-dismissable col-6 m-auto agency-register-alert-error ">
+              <span>Update user error example.</span>
+          </div>
+          <div class="alert alert-success alert-dismissable col-6 m-auto agency-register-alert-success">
+            <span>Update user success example.</span>
+          </div>
           <div class="card-body">
-            <form>
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <label class="bmd-label-floating">Email address</label>
-                    <input type="email" class="form-control">
-                  </div>
-                </div>
-              </div>
+            <form method="post" action="/user/agency-register">
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="bmd-label-floating">First Name</label>
-                    <input type="text" class="form-control">
+                    <input id="input-fName" name="fName" type="text" class="form-control">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="bmd-label-floating">Last Name</label>
-                    <input type="text" class="form-control">
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label class="bmd-label-floating">Address</label>
-                    <input type="text" class="form-control">
+                    <input id="input-lName" name="lName" type="text" class="form-control">
                   </div>
                 </div>
               </div>
@@ -135,13 +194,17 @@
                 <div class="col-md-4">
                   <div class="form-group">
                     <label class="bmd-label-floating">City</label>
-                    <input type="text" class="form-control">
+                    <input id="input-city" name="city" type="text" class="form-control"
+                    <% if(user.address){ %> value="<%= user.address %>" readonly <% } %>
+                    >
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label class="bmd-label-floating">Phone</label>
-                    <input type="text" class="form-control">
+                    <input id="input-phone" name="phone" type="phone" class="form-control"
+                      <% if(user.phone){ %> value="<%= user.phone%>" readonly <% } %>
+                    >
                   </div>
                 </div>
               </div>
@@ -151,12 +214,14 @@
                     <label>About Me</label>
                     <div class="form-group">
                       <label class="bmd-label-floating"> Describe Something about yourself</label>
-                      <textarea class="form-control" rows="5"></textarea>
+                      <textarea id="input-subcribe" name="subcribe" class="form-control" rows="5"></textarea>
                     </div>
                   </div>
                 </div>
               </div>
-              <button type="submit" class="btn btn-primary pull-right">Submit</button>
+              <input type="button" id="btn-cancel-agency" class="btn btn-danger pull-right" value="Cancel">
+              <input type="button" id="btn-register-agency" class="btn btn-warning pull-right" value="Submit">
+              
               <div class="clearfix"></div>
             </form>
           </div>
@@ -195,6 +260,7 @@
     </div>
   </div>
 </div>
+<% } %>
 <div class="content" id="user-invest">
   <div class="container-fluid">
     <div class="row">
@@ -273,86 +339,6 @@
     </div>
   </div>
 </div>
-<div class="content" id="user-wallet">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-8 ml-auto mr-auto">
-        <div class="card">
-          <div class="card-header card-header-primary">
-            <h4 class="card-title">Your Balance</h4>
-            <p class="card-category">WALLET ADDRESS: <%= user.wallet%></p>
-          </div>
-          <div class="card-body">
-            <div class="table-responsive table-upgrade">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th></th>
-                    <th class="text-center">Free</th>
-                    <th class="text-center">PRO</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Components</td>
-                    <td class="text-center">60</td>
-                    <td class="text-center">200</td>
-                  </tr>
-                  <tr>
-                    <td>Plugins</td>
-                    <td class="text-center">2</td>
-                    <td class="text-center">15</td>
-                  </tr>
-                  <tr>
-                    <td>Example Pages</td>
-                    <td class="text-center">3</td>
-                    <td class="text-center">27</td>
-                  </tr>
-                  <tr>
-                    <td>Login, Register, Pricing, Lock Pages</td>
-                    <td class="text-center"><i class="fa fa-times text-danger"></i></td>
-                    <td class="text-center"><i class="fa fa-check text-success"></i></td>
-                  </tr>
-                  <tr>
-                    <td>DataTables, VectorMap, SweetAlert, Wizard, jQueryValidation, FullCalendar etc...</td>
-                    <td class="text-center"><i class="fa fa-times text-danger"></i></td>
-                    <td class="text-center"><i class="fa fa-check text-success"></i></td>
-                  </tr>
-                  <tr>
-                    <td>Mini Sidebar</td>
-                    <td class="text-center"><i class="fa fa-times text-danger"></i></td>
-                    <td class="text-center"><i class="fa fa-check text-success"></i></td>
-                  </tr>
-                  <tr>
-                    <td>Premium Support</td>
-                    <td class="text-center"><i class="fa fa-times text-danger"></i></td>
-                    <td class="text-center"><i class="fa fa-check text-success"></i></td>
-                  </tr>
-                  <tr>
-                    <td></td>
-                    <td class="text-center">Free</td>
-                    <td class="text-center">Just $49</td>
-                  </tr>
-                  <tr>
-                    <td class="text-center"></td>
-                    <td class="text-center">
-                      <a href="#" class="btn btn-round btn-fill btn-default disabled">Current Version</a>
-                    </td>
-                    <td class="text-center">
-                      <a target="_blank"
-                        href="http://www.creative-tim.com/product/material-dashboard-pro/?ref=md-free-upgrade-live"
-                        class="btn btn-round btn-fill btn-info">Upgrade to PRO</a>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 <div class="content" id="user-affiliate">
   <div class="container-fluid">
     <div class="container-fluid">
@@ -360,41 +346,41 @@
         <div class="card-header card-header-primary">
           <h4 class="card-title">Your Affiliate Link</h4>
           <input id="myRefLink" class="btn btn-outline-success" value="<%= refferer %>" readonly>
-          <button id="copyRefLink" data-clipboard-target="#myRefLink" class="btn btn-warning"">Copy Refferal Link</button>
+          <button id="copyRefLink" data-clipboard-target="#myRefLink" class="btn btn-warning">Copy Refferal Link</button>
           </p>
         </div>
       </div>
       <div class=" card card-plain">
-            <div class="card-header card-header-primary">
-              <h4 class="card-title">Your Investers</h4>
-            </div>
-            <div class="card-body table-responsive">
-              <table class="table table-hover">
-                <thead class="text-warning">
-                  <th>Email</th>
-                  <th>Phone</th>
-                  <th>Address</th>
-                  <th>Balance</th>
-                  <th>Revenue</th>
-                  <th>Investers</th>
-                </thead>
-                <tbody>
-                  <% for(var listUser of listUser){ %>
-                  <tr>
-                    <td><%= listUser.email %></td>
-                    <td><%= listUser.phone %></td>
-                    <td><%= listUser.address %></td>
-                    <td><%= listUser.balance %></td>
-                    <td><%= listUser.revenue %></td>
-                    <td><%= listUser.invester %></td>
-                  </tr>
-                  <% };%>
-                </tbody>
-              </table>
-            </div>
+        <div class="card-header card-header-primary">
+          <h4 class="card-title">Your Investers</h4>
+        </div>
+        <div class="card-body table-responsive">
+          <table class="table table-hover">
+            <thead class="text-warning">
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Address</th>
+              <th>Balance</th>
+              <th>Revenue</th>
+              <th>Investers</th>
+            </thead>
+            <tbody>
+              <% listUser.forEach(function (listUser){ %>
+              <tr id="network-user-info" data-uid="<%= listUser.uid %>">
+                <td><%= listUser.email %></td>
+                <td><%= listUser.phone %></td>
+                <td><%= listUser.address %></td>
+                <td><%= listUser.balance %></td>
+                <td><%= listUser.revenue %></td>
+                <td><%= listUser.invester %></td>
+              </tr>
+              <% }); %>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
+  </div>
 </div>
 <div class="content" id="user-notification">
   <div class="container-fluid">
