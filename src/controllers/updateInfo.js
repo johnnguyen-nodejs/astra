@@ -126,7 +126,7 @@ let updateWallet = async (req, res)=> {
     }
 };
 let agencyRegister = async (req, res)=> {
-    const awaiting = "awaiting";
+    const waiting = "waiting";
     let errArr = [];
     let validationErrors = validationResult(req);
     if(!validationErrors.isEmpty()){
@@ -137,7 +137,7 @@ let agencyRegister = async (req, res)=> {
         return res.status(500).send(errArr);  
     };
     try {
-        await user.agencyRegister(req.user._id, awaiting);
+        await user.updateAgency(req.user._id, waiting);
         let result = {
             message: tranSuccess.AGENCY_SUCCESS_AWAIT
         };

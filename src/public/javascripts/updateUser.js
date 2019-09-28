@@ -148,14 +148,7 @@ function callAgencyRegister () {
         type: "put",
         data: agencyRegisterData,
         success: function(result){
-            $(".agency-register-alert-success").find("span").text(result.message);
-            $(".agency-register-alert-success").css("display", "block");
-
-            $("#btn-cancel-agency").click();
-            //logour after change password success
-            setTimeout(function() {
-                $('.agency-register-alert-success').css('display', 'none');
-              }, 3000);
+            socket.emit("send-agency-require", agencyRegisterData);
         },
         error: function(error){
             //dislay error
@@ -166,46 +159,6 @@ function callAgencyRegister () {
             setTimeout(function() {
                 $('.agency-register-alert-error').css('display', 'none');
               }, 3000);
-        }
-    });
-}
-function callAcceptAgency (targetId) {
-    $.ajax({
-        url: "/user/accept-agency",
-        type: "put",
-        data: {uid: targetId},
-        success: function(result){
-            $(`tr[data-awaitId=${targetId}]`).css("display", none);
-        },
-        error: function(error){
-            //dislay error
-            console.log(error, "1");
-        }
-    });
-}
-function callCancelAgency (targetId) {
-    $.ajax({
-        url: "/user/cancel-agency",
-        type: "put",
-        data: {uid: targetId},
-        success: function(result){
-            $(`tr[data-awaitId=${targetId}]`).css("display", none);
-        },
-        error: function(error){
-            console.log(error);
-        }
-    });
-}
-function callDeleteAgency (targetId) {
-    $.ajax({
-        url: "/user/delete-agency",
-        type: "put",
-        data: {uid: targetId},
-        success: function(result){
-            $(`tr[data-agencyId=${targetId}]`).css("display", none);
-        },
-        error: function(error){
-            console.log(error);
         }
     });
 }
@@ -390,7 +343,6 @@ $(document).ready(function() {
     });
     //agency register 
     $("#btn-register-agency").bind("click", function(){
-        console.log("ok");
         originAgency = {
             phone: $("#input-phone").val(),
             address: $("#input-address").val()
@@ -398,7 +350,7 @@ $(document).ready(function() {
         let fName = $("#input-fName").val();
         let lName = $("#input-lName").val();
         let city = $("#input-city").val();
-        let discribe = $("#input-discribe").val();
+        let discribe = $("#input-describe").val();
         let phone = $("#input-phone").val();
         let regexPhone = new RegExp(/^[0-9]{9,10}$/);
         let regexName = new RegExp(/^[\s0-9a-zA-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]+$/);
@@ -442,17 +394,115 @@ $(document).ready(function() {
            $("#input-city").val(originAgency.address);
            $("#input-describe").val(null);
            $("#input-phone").val(originAgency.phone);
-    });
-    $("#accept-agency-req").bind("click", function(){
-        let targetId = $(this).data("uid");
-        callAcceptAgency (targetId);
-    });
-    $("#cancel-agency-req").bind("click", function(){
-        let targetId = $(this).data("uid");
-        callCancelAgency(targetId);
-    });
-    $("#delete-agency-role").bind("click", function(){
-        let targetId = $(this).data("uid");
-        callCancelAgency(targetId);
+    })  
+    
+})
+$(document).on("click", "#accept-agency-req", function(){
+    let targetId = $(this).data("uid");
+    $.ajax({
+        url: "/user/accept-agency",
+        type: "put",
+        data: {uid: targetId},
+        success: function(result){
+            socket.emit("accept-agency", targetId);
+        },
+        error: function(error){
+            console.log(error);
+        }
     });
 })
+$(document).on("click", "#cancel-agency-req", function(){
+    let targetId = $(this).data("uid");
+    $.ajax({
+        url: "/user/cancel-agency",
+        type: "put",
+        data: {uid: targetId},
+        success: function(result){
+            socket.emit("cancel-agency", targetId);
+        },
+        error: function(error){
+            console.log(error);
+        }
+    });
+});
+$(document).on("click", "#delete-agency-role", function(){
+    let targetId = $(this).data("uid");
+    $.ajax({
+        url: "/user/delete-agency",
+        type: "put",
+        data: {uid: targetId},
+        success: function(result){
+            socket.emit("delete-agency", targetId);
+        },
+        error: function(error){
+            console.log(error);
+        }
+    });
+});
+socket.on("append-accept-agency", (userAccept)=>{
+    $(`tr[data-awaitId=${userAccept._id}]`).remove();
+    let userAppendAgency = `
+        <tr id="network-user-info" data-agencyId="${userAccept._id}">
+            <td>${userAccept.local.email}</td>
+            <td>${userAccept.phone}</td>
+            <td>${userAccept.address}</td>
+            <td>${userAccept.balance}</td>
+            <td>${userAccept.revenue}</td>
+            <td>${userAccept.invester}</td>
+            <td><input id="delete-agency-role" type="button" class="btn btn-danger" value="Delete" data-uid="${userAccept._id}"></td>
+        </tr>
+    `;
+    $("#table-agency-manager").prepend(userAppendAgency);
+});
+socket.on("append-cancel-agency", (userCancel)=>{
+    $(`tr[data-awaitId=${userCancel._id}]`).remove();
+});
+socket.on("append-delete-agency", (userCancel)=>{
+    $(`tr[data-agencyId=${userCancel._id}]`).remove();
+});
+socket.on("success-require-agency", (currentUser)=>{
+    $("#you-are-user").hide();
+    $("#success-require-agency").hide();
+    $("#success-become-agency").hide();
+    let notifiAwaitAgency =`
+        <div class="card" id="success-require-agency">
+            <div class="card-header card-header-primary">
+            <h4 class="card-title">Agency Register</h4>
+            </div>
+            <div class="card-body" >
+            <h5 class="card-title text-success" style="padding: 20px;text-align: center; font-weight: bold;">Your "Be a Agency" require successly, please wait, we will check and support soon</h4>
+            </div>
+        </div>
+    `;
+    $("#user-agency-notification").append(notifiAwaitAgency);
+});
+socket.on("send-accept-agency-to-user", (userAccept)=>{
+    $("#you-are-user").hide();
+    $("#success-require-agency").hide();
+    $("#success-become-agency").hide();
+    let notifiBecomeAgency =`
+    <div class="card" id="success-become-agency">
+        <div class="card-header card-header-primary">
+        <h4 class="card-title">Agency Register</h4>
+        </div>
+        <div class="card-body" >
+        <h5 class="card-title text-warning" style="padding: 20px;text-align: center; font-weight: bold;">Your are a awesome Agency, try your hard to buid your team and get more profit</h4>
+        </div>
+    </div>
+    `;
+    $("#user-agency-notification").append(notifiBecomeAgency);
+});
+socket.on("send-require-agency-to-admin", (currentUser)=>{
+    let userAppendAgencyWait = `
+    <tr id="network-user-info" data-awaitId="${currentUser._id}">
+        <td>${currentUser.local.email}</td>
+        <td>${currentUser.phone}</td>
+        <td>${currentUser.address}</td>
+        <td>${currentUser.balance}</td>
+        <td>${currentUser.revenue}</td>
+    <td>${currentUser.invester}</td>
+        <td><input id="accept-agency-req" type="button" class="btn btn-warning" value="Accept" data-uid="${currentUser._id}">&nbsp;<input id="cancel-agency-req" type="button" class="btn btn-danger" value="Cancel" data-uid="${currentUser._id}"></td>
+    </tr>
+    `;
+    $("#table-agency-waiting-manager").prepend(userAppendAgencyWait);
+});

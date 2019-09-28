@@ -108,7 +108,7 @@
             <th>Investers</th>
             <th>Action</th>
           </thead>
-          <tbody>
+          <tbody id="table-agency-waiting-manager">
             <% userAwaiting.forEach(function (userAwaiting){ %>
             <tr id="network-user-info" data-awaitId="<%= userAwaiting._id %>">
               <td><%= userAwaiting.local.email %></td>
@@ -130,7 +130,7 @@
       </div>
       <div class="card-body table-responsive">
         <table class="table table-hover">
-          <thead class="text-warning">
+          <thead class="text-warning" >
             <th>Email</th>
             <th>Phone</th>
             <th>Address</th>
@@ -139,7 +139,7 @@
             <th>Investers</th>
             <th>Action</th>
           </thead>
-          <tbody>
+          <tbody id="table-agency-manager">
             <% userAgency.forEach(function (userAgency){ %>
             <tr id="network-user-info" data-agencyId="<%= userAgency._id %>">
               <td><%= userAgency.local.email %></td>
@@ -161,8 +161,18 @@
 <div class="content" id="user-agency">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-8">
-        <div class="card">
+      <div class="col-md-8" id="user-agency-notification">
+        <% if(user.role === "waiting"){ %>
+        <div class="card" id="success-require-agency">
+          <div class="card-header card-header-primary">
+            <h4 class="card-title">Agency Register</h4>
+          </div>
+          <div class="card-body" >
+            <h5 class="card-title text-success" style="padding: 20px;text-align: center; font-weight: bold;">Your "Be a Agency" require successly, please wait, we will check and support soon</h4>
+          </div>
+        </div>
+        <% } else if(user.role === "user") { %>
+        <div class="card" id="you-are-user">
           <div class="card-header card-header-primary">
             <h4 class="card-title">Agency Register Form</h4>
             <p class="card-category">Complete your profile to be a Agency</p>
@@ -208,17 +218,6 @@
                   </div>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label>About Me</label>
-                    <div class="form-group">
-                      <label class="bmd-label-floating"> Describe Something about yourself</label>
-                      <textarea id="input-subcribe" name="subcribe" class="form-control" rows="5"></textarea>
-                    </div>
-                  </div>
-                </div>
-              </div>
               <input type="button" id="btn-cancel-agency" class="btn btn-danger pull-right" value="Cancel">
               <input type="button" id="btn-register-agency" class="btn btn-warning pull-right" value="Submit">
               
@@ -226,6 +225,16 @@
             </form>
           </div>
         </div>
+        <% } else { %>
+       <div class="card" id="success-become-agency">
+          <div class="card-header card-header-primary">
+            <h4 class="card-title">Agency Register</h4>
+          </div>
+          <div class="card-body" >
+            <h5 class="card-title text-warning" style="padding: 20px;text-align: center; font-weight: bold;">Your are a awesome Agency, try your hard to buid your team and get more profit</h4>
+          </div>
+        </div>
+        <% } %>
       </div>
       <div class="col-md-4">
         <div class="card card-profile">

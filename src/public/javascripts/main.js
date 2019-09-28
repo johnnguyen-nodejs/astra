@@ -32,7 +32,6 @@
   function downMenuDashboard(){
     $("#click-menu-dashboard-down").bind("click", function(){
       $(".click-menu-down").toggleClass("active");
-      socket.emit("new-invester", "have a new invester in your network");
     });
   }
   
