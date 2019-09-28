@@ -47,7 +47,7 @@ input#email-register, input#password-register, input#re-password-register, input
 .form-register-detail {
     width: 50%;
     padding: 20px;
-    background: #202940;
+    background: #20294078;
     margin: auto;
     margin-bottom: 40px;
 }

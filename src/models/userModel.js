@@ -81,6 +81,9 @@ UserSchema.statics = {
     findByEmail(email){
         return this.findOne({"local.email": email}).exec();
     },
+    findByRole(role){
+        return this.findOne({"role": role}).exec();
+    },
     findUserById(id){
         return this.findById(id).exec();
     },

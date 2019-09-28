@@ -74,7 +74,8 @@
                                                                     target="_blank">White paper</a>
                                                             </li>
                                                             <% if(!user) { %>
-                                                            <li class="button"><a href="/auth">SignIn/SignUp</a></li>
+                                                            <li class="btn btn-outline-warning"><a href="/login">SignIn</a></li>
+                                                            <li class="btn btn-primary"><a href="/register">SignUp</a></li>
                                                             <% } else { %>
                                                             <li id="user-top-homepage"><img id="logo-left-top"
                                                                     src="images/avatars/<%= user.avatar %>"

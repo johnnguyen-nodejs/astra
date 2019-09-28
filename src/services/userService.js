@@ -55,17 +55,7 @@ let updateWallet = (id, dataUpdate) => {
         resolve(true);
     });
 }
-let agencyRegister = (id, dataUpdate) => {
-    return new Promise(async (resolve, reject)=> {
-        console.log(dataUpdate)
-        let agencyUser = await UserModel.findUserById(id);
-        if(!agencyUser){
-            return reject(tranErrors.SERVER_ERR);
-        }
-        await UserModel.updateAgencyAwait(id, role);
-        resolve(true);
-    });
-}
+
 let updateAgency = (id, role) => {
     return new Promise(async (resolve, reject)=> {
         let agencyAccept = await UserModel.findUserById(id);
@@ -82,6 +72,5 @@ module.exports = {
     updateUser: updateUser,
     updatePassword: updatePassword,
     updateWallet: updateWallet,
-    agencyRegister: agencyRegister,
     updateAgency: updateAgency
 };
