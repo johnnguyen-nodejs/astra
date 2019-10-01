@@ -1,5 +1,5 @@
 
-import UserModel from "./../models/userModel";
+import UserModel from './../models/userModel';
 import bcrypt from "bcrypt";
 import uuidv4 from "uuid/v4";
 import { tranErrors, tranSuccess, tranMail } from "../../lang/en";

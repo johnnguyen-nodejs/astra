@@ -1,4 +1,4 @@
-require("dotenv").config();
+
 import nodeMailer from "nodeMailer";
 
 let adminMail = process.env.MAIL_USER;
